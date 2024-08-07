@@ -1,0 +1,31 @@
+.tag {
+  @apply tw-inline-block tw-rounded-[20px] tw-mr-[5px];
+
+  &.s {
+    @apply tw-text-[12px] tw-leading-[12px] tw-py-[5px] tw-px-[10px];
+  }
+
+  &.m {
+    @apply tw-text-[14px] tw-leading-[14px] tw-py-[5px] tw-px-[10px];
+  }
+
+  &.ghost {
+    @apply tw-border tw-border-solid tw-border-gray-light;
+  }
+
+  &.red {
+    @apply tw-bg-[#DE0000] tw-font-semibold tw-text-white;
+  }
+
+  &.grey {
+    @apply tw-bg-[#B3C0D9] tw-font-semibold tw-text-white;
+  }
+
+  &.green {
+    @apply tw-bg-green-light tw-font-semibold tw-text-green;
+  }
+
+  &.primary {
+    @apply tw-border tw-border-solid tw-border-primary tw-text-primary;
+  }
+}
