@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Noto_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
@@ -11,8 +12,7 @@ const notoSans = Noto_Sans({
 })
 
 export const metadata: Metadata = {
-	title: 'Purple Next',
-	description: 'The purple next application'
+	title: 'RootLayout'
 }
 
 export default function RootLayout({
@@ -22,7 +22,26 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='ru'>
-			<body className={notoSans.className}>{children}</body>
+			<body className={notoSans.className}>
+				<nav className='tw-border tw-border-solid tw-border-[darkcyan]'>
+					<ul className='tw-flex tw-flex-nowrap tw-justify-center tw-items-center -tw-mx-4'>
+						<li className='tw-px-4'>
+							<Link href={'/courses'}>Курсы</Link>
+						</li>
+						<li className='tw-px-4'>
+							<Link href={'/for-children'}>Для детей</Link>
+						</li>
+						<li className='tw-px-4'>
+							<Link href={'/about'}>О нас</Link>
+						</li>
+					</ul>
+				</nav>
+			  <main
+					className='tw-flex tw-flex-col tw-justify-between tw-items-center tw-p-24 tw-min-h-screen'
+				>
+					{children}
+			  </main>
+			</body>
 		</html>
 	)
 }
