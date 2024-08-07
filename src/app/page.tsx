@@ -1,16 +1,14 @@
-import { Metadata } from 'next'
+'use client'
 
-import { Button, HTag, PTag, Tag } from '@/components'
+import { useState } from 'react'
+
+import { Button, HTag, PTag, Rating, Tag } from '@/components'
 
 import styles from './Home.module.scss'
 
-export async function generateMetadata (): Promise<Metadata> {
-	return {
-		title: 'Main'
-	}
-}
-
 export default function Home() {
+	const [rating, setRating] = useState(4)
+
 	return (
 		<div className={styles.home}>
 			<HTag tag='h2'>Текст</HTag>
@@ -23,6 +21,7 @@ export default function Home() {
 			<Tag size='m' color='red'>Red</Tag>
 			<Tag size='s' color='green'>Green</Tag>
 			<Tag color='primary'>Primary</Tag>
+			<Rating rating={rating} setRating={setRating} isEditable />
 		</div>
 	)
 }

@@ -1,0 +1,19 @@
+.rating {
+  @apply tw-block;
+}
+
+.star {
+  > svg {
+    @apply tw-mt-[5px];
+  }
+
+  &.filled {
+    > svg {
+      @apply tw-fill-primary;
+    }
+  }
+
+  &.editable {
+    cursor: pointer;
+  }
+}
