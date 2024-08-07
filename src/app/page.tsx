@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 
-import { Button, HTag } from '@/components'
+import { Button, HTag, PTag } from '@/components'
 
 import styles from './Home.module.scss'
 
@@ -19,6 +19,9 @@ export default function Home() {
 			<HTag tag='h2'>Текст</HTag>
 			<Button appearance='primary' arrow='right'>Кнопка</Button>
 			<Button appearance='ghost' arrow='down'>Кнопка</Button>
+			<PTag size='l'>Большой</PTag>
+			<PTag>Средний</PTag>
+			<PTag size='s'>Маленький</PTag>
 		</div>
 	)
 }

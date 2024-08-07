@@ -1,0 +1,15 @@
+.p {
+  @apply tw-block;
+
+  &.s {
+    @apply tw-text-[14px] tw-leading-[24px];
+  }
+
+  &.m {
+    @apply tw-text-[16px] tw-leading-[24px];
+  }
+
+  &.l {
+    @apply tw-text-[18px] tw-leading-[29px];
+  }
+}
