@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply tw-box-border;
+}
+
+html {
+  @apply tw-overflow-y-auto;
+
+  &::-webkit-scrollbar {
+    @apply tw-w-1 tw-h-1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply tw-bg-black;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply tw-bg-white;
+  }
+}
+
+body {
+  @apply tw-bg-[#F5F6F8] tw-text-black;
+}
+
+a {
+  @apply tw-text-[inherit] tw-no-underline;
+}
+
+button, input {
+  @apply tw-border-0 tw-rounded-none tw-shadow-none tw-appearance-none tw-outline-0;
+}

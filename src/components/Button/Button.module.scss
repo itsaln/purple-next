@@ -1,0 +1,45 @@
+.button {
+  @apply tw-inline-block tw-border-none tw-rounded-[5px] tw-text-[14px] tw-text-center tw-p-[10px];
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.primary {
+    @apply tw-bg-primary tw-text-white;
+
+    &:hover {
+      @apply tw-bg-primary-hover;
+    }
+
+    .arrow {
+      > svg {
+        @apply tw-fill-white;
+      }
+    }
+  }
+
+  &.ghost {
+    @apply tw-bg-transparent tw-border tw-border-solid tw-border-gray-light tw-text-black;
+
+    &:hover {
+      @apply tw-bg-primary tw-text-white;
+
+      .arrow {
+        > svg {
+          @apply tw-fill-white;
+        }
+      }
+    }
+  }
+
+  .arrow {
+    @apply tw-inline-block tw-ml-[10px];
+
+    &.right {}
+
+    &.down {
+      transform: rotate(90deg);
+      transition: all 0.2s;
+    }
+  }
+}

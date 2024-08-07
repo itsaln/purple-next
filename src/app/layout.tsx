@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Noto_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import './globals.css'
+import '@/assets/scss/global.scss'
 
-const montserrat = Montserrat({ subsets: ['latin'] })
+const notoSans = Noto_Sans({
+	display: 'swap',
+	subsets: ['latin', 'cyrillic'],
+	weight: ['300', '400', '500', '700']
+})
 
 export const metadata: Metadata = {
 	title: 'Purple Next',
@@ -17,8 +21,8 @@ export default function RootLayout({
 	children: ReactNode
 }>) {
 	return (
-		<html lang='en'>
-			<body className={montserrat.className}>{children}</body>
+		<html lang='ru'>
+			<body className={notoSans.className}>{children}</body>
 		</html>
 	)
 }

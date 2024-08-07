@@ -1,11 +1,24 @@
-import styles from './Home.module.css'
+import { Metadata } from 'next'
+
+import { Button, HTag } from '@/components'
+
+import styles from './Home.module.scss'
+
+export async function generateMetadata (): Promise<Metadata> {
+	return {
+		title: 'ComputedMeta',
+		icons: {
+			icon: '/afdsafsd.ico'
+		}
+	}
+}
 
 export default function Home() {
-	const a = 1
-
 	return (
 		<div className={styles.home}>
-			Home {a}
+			<HTag tag='h2'>Текст</HTag>
+			<Button appearance='primary' arrow='right'>Кнопка</Button>
+			<Button appearance='ghost' arrow='down'>Кнопка</Button>
 		</div>
 	)
 }
