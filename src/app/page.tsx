@@ -6,10 +6,7 @@ import styles from './Home.module.scss'
 
 export async function generateMetadata (): Promise<Metadata> {
 	return {
-		title: 'ComputedMeta',
-		icons: {
-			icon: '/afdsafsd.ico'
-		}
+		title: 'Main'
 	}
 }
 
