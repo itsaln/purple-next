@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export default function AboutLayout({
+export default function AboutTemplate({
 	children
 }: Readonly<{
 	children: ReactNode

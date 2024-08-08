@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Noto_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
+
+import { Header, Sidebar, Footer } from '@/components/layout'
 
 import '@/assets/scss/global.scss'
 
@@ -16,32 +17,22 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-	children
-}: Readonly<{
+																		 children
+																	 }: Readonly<{
 	children: ReactNode
 }>) {
 	return (
 		<html lang='ru'>
-			<body className={notoSans.className}>
-				<nav className='tw-border tw-border-solid tw-border-[darkcyan]'>
-					<ul className='tw-flex tw-flex-nowrap tw-justify-center tw-items-center -tw-mx-4'>
-						<li className='tw-px-4'>
-							<Link href={'/courses'}>Курсы</Link>
-						</li>
-						<li className='tw-px-4'>
-							<Link href={'/for-children'}>Для детей</Link>
-						</li>
-						<li className='tw-px-4'>
-							<Link href={'/about'}>О нас</Link>
-						</li>
-					</ul>
-				</nav>
-			  <main
-					className='tw-flex tw-flex-col tw-justify-between tw-items-center tw-p-24 tw-min-h-screen'
-				>
-					{children}
-			  </main>
-			</body>
+		<body className={notoSans.className}>
+		<Header />
+		<div className='app-content'>
+			<Sidebar />
+			<main className='content'>
+				{children}
+			</main>
+		</div>
+		<Footer />
+		</body>
 		</html>
 	)
 }
