@@ -14,7 +14,6 @@ export const Rating: FC<RatingProps> = ({
 	rating,
 	setRating,
 	className,
-	children,
 	...props
 }) => {
 	const [ratingArray, setRatingArray] = useState<ReactNode[]>(
@@ -61,10 +60,10 @@ export const Rating: FC<RatingProps> = ({
 
 	useEffect(() => {
 		constructorRating(rating)
-	}, [rating])
+	}, [rating]) // eslint-disable-next-line react-hooks/exhaustive-deps
 
 	return (
-		<div className={styles.rating} {...props}>
+		<div className={cn(styles.rating, className)} {...props}>
 			{ratingArray.map((r, i) => (
 				<span key={`${r}_${i}`}>{r}</span>
 			))}

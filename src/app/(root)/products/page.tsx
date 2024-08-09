@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: 'News'
+	title: 'Products'
 }
 
-export default function News() {
+export default function Products() {
 	return (
 		<div>
-			News
+			Products page
 		</div>
 	)
 }

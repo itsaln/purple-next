@@ -1,5 +1,3 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
 import { Noto_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
@@ -11,10 +9,6 @@ const notoSans = Noto_Sans({
 	weight: ['300', '400', '500', '700']
 })
 
-export const metadata: Metadata = {
-	title: 'Authorization'
-}
-
 export default function AuthLayout({
 	children
 }: Readonly<{
@@ -23,12 +17,10 @@ export default function AuthLayout({
 	return (
 		<html lang='ru'>
 			<body className={notoSans.className}>
-			  <main
-					className='tw-flex tw-flex-col tw-justify-between tw-items-center tw-p-24 tw-min-h-screen'
-				>
+				<main className='tw-flex tw-flex-col tw-justify-between tw-items-center tw-p-24 tw-min-h-screen'>
 					<h2>Authorization</h2>
 					{children}
-			  </main>
+				</main>
 			</body>
 		</html>
 	)

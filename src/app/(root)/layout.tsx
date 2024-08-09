@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
@@ -14,27 +13,21 @@ const notoSans = Noto_Sans({
 	weight: ['300', '400', '500', '700']
 })
 
-export const metadata: Metadata = {
-	title: 'RootLayout'
-}
-
 export default function RootLayout({
-																		 children
-																	 }: Readonly<{
+	children
+}: Readonly<{
 	children: ReactNode
 }>) {
 	return (
 		<html lang='ru'>
-		<body className={notoSans.className}>
-		<div className={styles.layout}>
-			<Header className={styles.header} />
-			<Sidebar className={styles.sidebar} />
-			<main className={styles.content}>
-				{children}
-			</main>
-			<Footer className={styles.footer} />
-		</div>
-		</body>
+			<body className={notoSans.className}>
+				<div className={styles.layout}>
+					<Header className={styles.header} />
+					<Sidebar className={styles.sidebar} />
+					<main className={styles.content}>{children}</main>
+					<Footer className={styles.footer} />
+				</div>
+			</body>
 		</html>
 	)
 }
