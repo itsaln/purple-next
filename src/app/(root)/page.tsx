@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 
-import Menu from './components/Menu'
+import { getMenu } from '@/api/menu'
+
+import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
 import styles from './Home.module.scss'
 
@@ -9,10 +11,16 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
+	const firstCategory = TopLevelCategoryEnum.Courses
+	const menu = await getMenu(firstCategory)
+
 	return (
 		<div className={styles.home}>
-			Home page
-			<Menu />
+			<ul>
+				{menu.map((m, i) => (
+					<li key={`${m._id.secondCategory}_${i}`}>{m._id.secondCategory}</li>
+				))}
+			</ul>
 		</div>
 	)
 }
