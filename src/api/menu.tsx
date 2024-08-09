@@ -10,8 +10,11 @@ export async function getMenu(firstCategory: number): Promise<IMenuItem[]> {
 		}),
 		headers: {
 			'Content-Type': 'application/json'
-		}
+		},
+		next: { revalidate: 10 }
 	})
+
+	console.log('revalidating getMenu')
 
 	return res.json()
 }
