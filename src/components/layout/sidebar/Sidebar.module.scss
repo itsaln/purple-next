@@ -1,3 +1,40 @@
 .sidebar {
   @apply tw-block;
+
+  .firstLevel {
+    @apply tw-grid tw-gap-[20px] tw-items-center tw-font-medium tw-text-[18px] tw-leading-[25px] tw-mt-[20px];
+    grid-template-columns: 24px 1fr;
+
+
+    &.active, &:hover {
+      @apply tw-text-primary;
+
+      svg {
+        @apply tw-fill-primary;
+      }
+    }
+  }
+
+  .secondBlock {
+    @apply tw-border-l tw-border-solid tw-border-[#DFDFDF] tw-mt-[15px] tw-ml-[12px] tw-pl-[32px];
+
+    .secondLevel {
+      @apply tw-font-light tw-text-[12px] tw-leading-[16px] tw-text-gray-dark tw-uppercase tw-cursor-pointer tw-mb-[10px];
+    }
+    .secondLevelBlock {
+      &.opened {
+        &:last-child {
+          @apply tw-mb-[20px];
+        }
+      }
+    }
+  }
+
+  .thirdLevel {
+    @apply tw-block tw-font-medium tw-text-[14px] tw-leading-[19px] tw-cursor-pointer tw-mb-[10px];
+
+    &.active, &:hover {
+      @apply tw-text-primary;
+    }
+  }
 }

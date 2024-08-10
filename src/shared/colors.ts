@@ -1,6 +1,7 @@
 export const Colors = {
 	black: '#3B434E',
 	'gray-light': '#EBEBEB',
+	'gray-dark': '#787D85',
 	white: '#FFFFFF',
 	primary: '#7653FC',
 	'primary-hover': '#6344DF',
