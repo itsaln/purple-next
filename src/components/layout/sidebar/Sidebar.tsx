@@ -1,4 +1,7 @@
-import { FC } from 'react'
+'use client'
+
+import Link from 'next/link'
+import { createContext, FC } from 'react'
 import cn from 'clsx'
 
 import {
@@ -48,13 +51,15 @@ const firstLevelMenu: IFirstLevelMenuItem[] = [
 	}
 ]
 
+const SidebarContext = createContext({})
+
 export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
 	const buildFirstLevel = () => {
 		return (
 			<>
 				{firstLevelMenu.map((m, index) => (
 					<div key={`${m.id}_${index}`}>
-						<a href={`/${m.route}`}>
+						<Link href={`/${m.route}`}>
 							<div
 								className={cn(styles.firstLevel, {
 									[styles.active]: m.id === firstCategory
@@ -63,7 +68,7 @@ export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
 								{m.icon}
 								<span>{m.name}</span>
 							</div>
-						</a>
+						</Link>
 						{m.id === firstCategory && buildSecondLevel(m)}
 					</div>
 				))}
@@ -92,7 +97,7 @@ export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
 
 	const buildThirdLevel = (pages: IPageItem[], route: string) => {
 		return pages.map((p, i) => (
-			<a
+			<Link
 				key={`${p._id}_${i}`}
 				href={`/${route}/${p.alias}`}
 				className={cn(styles.thirdLevel, {
@@ -100,11 +105,13 @@ export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
 				})}
 			>
 				{p.category}
-			</a>
+			</Link>
 		))
 	}
 
 	return (
-		<div className={cn(styles.sidebar, className)}>{buildFirstLevel()}</div>
+		<SidebarContext.Provider value={{}}>
+			<div className={cn(styles.sidebar, className)}>{buildFirstLevel()}</div>
+		</SidebarContext.Provider>
 	)
 }
