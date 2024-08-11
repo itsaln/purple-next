@@ -1,6 +1,12 @@
 .sidebar {
-  @apply tw-block;
+  @apply tw-grid tw-gap-[20px] tw-content-start;
 
+  .logo {
+    @apply tw-mt-[34px];
+  }
+}
+
+.menu {
   .firstLevel {
     @apply tw-grid tw-gap-[20px] tw-items-center tw-font-medium tw-text-[18px] tw-leading-[25px] tw-mt-[20px];
     grid-template-columns: 24px 1fr;

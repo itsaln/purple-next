@@ -1,13 +1,15 @@
 import { Noto_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
+import { getMenu } from '@/api/menu'
+
+import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
+
 import { Header, Sidebar, Footer } from '@/components/layout'
 
 import '@/assets/scss/global.scss'
 
 import styles from './Layout.module.scss'
-import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
-import { getMenu } from '@/api/menu'
 
 const notoSans = Noto_Sans({
 	display: 'swap',
