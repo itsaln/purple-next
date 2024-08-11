@@ -7,8 +7,6 @@ export async function getPage(alias: string): Promise<ITopPageModel | null> {
 		next: { revalidate: 10 }
 	})
 
-	console.log('revalidating getPage')
-
 	if (!res.ok) return null
 
 	return res.json()

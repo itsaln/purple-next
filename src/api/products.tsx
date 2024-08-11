@@ -15,7 +15,5 @@ export async function getProducts(category: string): Promise<IProductModel[]> {
 		next: { revalidate: 10 }
 	})
 
-	console.log('revalidating getProducts')
-
 	return res.json()
 }

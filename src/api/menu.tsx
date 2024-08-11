@@ -15,7 +15,5 @@ export async function getMenu(firstCategory: TopLevelCategoryEnum): Promise<IMen
 		next: { revalidate: 10 }
 	})
 
-	console.log('revalidating getMenu')
-
 	return res.json()
 }
