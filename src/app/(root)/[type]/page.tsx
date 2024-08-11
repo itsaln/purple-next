@@ -16,11 +16,11 @@ interface ITypePage {
 }
 
 export async function generateStaticParams() {
-	return firstLevelMenu.map(m => `/${m.route}`)
+	return firstLevelMenu.map((m) => `/${m.route}`)
 }
 
 export default async function TypePage({ params }: ITypePage) {
-	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type)
+	const firstCategoryItem = firstLevelMenu.find((m) => m.route === params.type)
 	if (!firstCategoryItem) notFound()
 
 	const firstCategory = firstCategoryItem.id

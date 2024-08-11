@@ -1,13 +1,11 @@
-import { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
+import { FC } from 'react'
 import cn from 'clsx'
 
 import styles from './Header.module.scss'
 
-interface IHeader extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
-
-export const Header: FC<IHeader> = ({ className, ...props }) => {
+export const Header: FC<{ className?: string }> = ({ className }) => {
 	return (
-		<div className={cn(styles.header, className)} {...props}>
+		<div className={cn(styles.header, className)}>
 			Header
 		</div>
 	)

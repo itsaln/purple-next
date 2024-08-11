@@ -17,7 +17,9 @@ export default function ErrorPage({ error, reset }: IErrorPage) {
 	return (
 		<div className={styles.error}>
 			Error something was wrong: <div>{JSON.stringify(error)}</div>
-			<button type='button' onClick={() => reset()}>Again</button>
+			<button type='button' onClick={() => reset()}>
+				Again
+			</button>
 		</div>
 	)
 }
