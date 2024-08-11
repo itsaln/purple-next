@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 	// )
 }
 
-export default async function Course({
+export default async function CoursePage({
 	params
 }: {
 	params: { alias: string, type: string }

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 	title: 'Search'
 }
 
-export default function Search() {
+export default function SearchPage() {
 	return (
 		<div className={styles.search}>
 			Search

@@ -1,17 +1,15 @@
 .layout {
-  display: grid;
+  @apply tw-grid tw-gap-y-0 tw-gap-x-[30px] tw-min-h-screen;
   grid-template-columns: auto 230px minmax(230px, 1200px) auto;
   grid-template-rows: auto 1fr auto;
-  gap: 0 30px;
-  min-height: 100vh;
   grid-template-areas:
     ". header header ."
     ". sidebar content ."
     "footer footer footer footer";
 
   .header {
+    @apply tw-hidden;
     grid-area: header;
-    display: none;
   }
 
   .sidebar {
@@ -37,11 +35,11 @@
       "footer";
 
     .sidebar {
-      display: none;
+      @apply tw-hidden;
     }
 
     .header {
-      display: block;
+      @apply tw-block;
     }
   }
 

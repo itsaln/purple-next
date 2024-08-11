@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 	return firstLevelMenu.map(m => `/${m.route}`)
 }
 
-export default async function Type({ params }: { params: { type: string } }) {
+export default async function TypePage({ params }: { params: { type: string } }) {
 	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type)
 	if (!firstCategoryItem) notFound()
 
