@@ -22,7 +22,11 @@
       @apply tw-font-light tw-text-[12px] tw-leading-[16px] tw-text-gray-dark tw-uppercase tw-cursor-pointer tw-mb-[10px];
     }
     .secondLevelBlock {
+      @apply tw-hidden;
+
       &.opened {
+        @apply tw-block;
+
         &:last-child {
           @apply tw-mb-[20px];
         }

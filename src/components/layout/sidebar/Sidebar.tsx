@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { createContext, FC } from 'react'
+import { usePathname } from 'next/navigation'
+import { createContext, FC, useState } from 'react'
 import cn from 'clsx'
 
 import {
@@ -54,6 +55,20 @@ const firstLevelMenu: IFirstLevelMenuItem[] = [
 const SidebarContext = createContext({})
 
 export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
+	const pathname = usePathname()
+
+	const [menuState, setMenuState] = useState(menu)
+
+	const openSecondLevel = (secondCategory: string) => {
+		setMenuState(
+			menuState.map((m) => {
+				if (m._id.secondCategory === secondCategory) m.isOpened = !m.isOpened
+
+				return m
+			})
+		)
+	}
+
 	const buildFirstLevel = () => {
 		return (
 			<>
@@ -79,18 +94,29 @@ export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
 	const buildSecondLevel = (menuItem: IFirstLevelMenuItem) => {
 		return (
 			<div className={styles.secondBlock}>
-				{menu.map((m, i) => (
-					<div key={`${m._id.secondCategory}_${i}`}>
-						<div className={styles.secondLevel}>{m._id.secondCategory}</div>
-						<div
-							className={cn(styles.secondLevelBlock, {
-								[styles.opened]: m.isOpened
-							})}
-						>
-							{buildThirdLevel(m.pages, menuItem.route)}
+				{menuState.map((m, i) => {
+					if (m.pages.map((p) => p.alias).includes(pathname.split('/')[2])) {
+						m.isOpened = true
+					}
+
+					return (
+						<div key={`${m._id.secondCategory}_${i}`}>
+							<div
+								className={styles.secondLevel}
+								onClick={() => openSecondLevel(m._id.secondCategory)}
+							>
+								{m._id.secondCategory}
+							</div>
+							<div
+								className={cn(styles.secondLevelBlock, {
+									[styles.opened]: m.isOpened
+								})}
+							>
+								{buildThirdLevel(m.pages, menuItem.route)}
+							</div>
 						</div>
-					</div>
-				))}
+					)
+				})}
 			</div>
 		)
 	}
@@ -101,7 +127,7 @@ export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
 				key={`${p._id}_${i}`}
 				href={`/${route}/${p.alias}`}
 				className={cn(styles.thirdLevel, {
-					[styles.active]: false
+					[styles.active]: `/${route}/${p.alias}` === pathname
 				})}
 			>
 				{p.category}
