@@ -5,14 +5,15 @@ import { getPage } from '@/api/page'
 import { getMenu } from '@/api/menu'
 import { getProducts } from '@/api/products'
 
-import { firstLevelMenu } from '@/helpers/helpers'
+import { firstLevelMenu, priceRu } from '@/helpers/helpers'
+
+import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
 import { Card, HTag, Tag } from '@/components/ui'
 
 import RateIcon from '@/assets/icons/rate.svg'
 
 import styles from './Course.module.scss'
-import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
 export const metadata: Metadata = {
 	title: 'Top page'
@@ -90,7 +91,7 @@ export default async function CoursePage({ params }: ICoursePage) {
 						<div>
 							<div className={styles.hh_salary_title}>Начальный</div>
 							<div className={styles.hh_salary_value}>
-								{page.hh.juniorSalary}
+								{priceRu(page.hh.juniorSalary)}
 							</div>
 							<div className={styles.hh_salary_rate}>
 								<RateIcon className={styles.filled} />
@@ -102,7 +103,7 @@ export default async function CoursePage({ params }: ICoursePage) {
 						<div>
 							<div className={styles.hh_salary_title}>Средний</div>
 							<div className={styles.hh_salary_value}>
-								{page.hh.middleSalary}
+								{priceRu(page.hh.middleSalary)}
 							</div>
 							<div className={styles.hh_salary_rate}>
 								<RateIcon className={styles.filled} />
@@ -114,7 +115,7 @@ export default async function CoursePage({ params }: ICoursePage) {
 						<div>
 							<div className={styles.hh_salary_title}>Профессионал</div>
 							<div className={styles.hh_salary_value}>
-								{page.hh.seniorSalary}
+								{priceRu(page.hh.seniorSalary)}
 							</div>
 							<div className={styles.hh_salary_rate}>
 								<RateIcon className={styles.filled} />
