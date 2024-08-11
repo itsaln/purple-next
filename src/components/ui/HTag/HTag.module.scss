@@ -1,20 +1,11 @@
 .h1 {
-    font-weight: 500;
-    font-size: 26px;
-    line-height: 35px;
-    margin: 0;
+    @apply tw-font-medium tw-text-[26px] tw-leading-[35px] tw-m-0;
 }
 
 .h2 {
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 30px;
-    margin: 0;
+    @apply tw-font-medium tw-text-[22px] tw-leading-[30px] tw-m-0;
 }
 
 .h3 {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 27px;
-    margin: 0;
+    @apply tw-font-semibold tw-text-[20px] tw-leading-[27px] tw-m-0;
 }

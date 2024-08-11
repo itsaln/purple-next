@@ -1,11 +1,17 @@
-import { FC, PropsWithChildren } from 'react'
-import cn from 'clsx'
+'use client'
 
-import { TagProps } from './Tag.props'
+import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from 'react'
+import cn from 'clsx'
 
 import styles from './Tag.module.scss'
 
-export const Tag: FC<PropsWithChildren<TagProps>> = ({
+interface ITag extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+	size?: 's' | 'm'
+	color?: 'ghost' | 'red' | 'grey' | 'green' | 'primary'
+	href?: string
+}
+
+export const Tag: FC<PropsWithChildren<ITag>> = ({
 	size = 's',
 	color = 'ghost',
 	href,

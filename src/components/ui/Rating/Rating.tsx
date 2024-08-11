@@ -1,15 +1,19 @@
 'use client'
 
-import { FC, ReactNode, useEffect, useState, KeyboardEvent } from 'react'
+import { FC, ReactNode, useEffect, useState, KeyboardEvent, DetailedHTMLProps, HTMLAttributes } from 'react'
 import cn from 'clsx'
-
-import { RatingProps } from './Rating.props'
 
 import StarIcon from './star.svg'
 
 import styles from './Rating.module.scss'
 
-export const Rating: FC<RatingProps> = ({
+interface IRating extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+	isEditable?: boolean
+	rating: number
+	setRating?: (rating: number) => void
+}
+
+export const Rating: FC<IRating> = ({
 	isEditable = false,
 	rating,
 	setRating,

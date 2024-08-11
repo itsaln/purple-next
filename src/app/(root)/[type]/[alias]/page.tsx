@@ -7,11 +7,15 @@ import { getProducts } from '@/api/products'
 
 import { firstLevelMenu } from '@/helpers/helpers'
 
+import { HTag, Tag } from '@/components/ui'
+
+import styles from './Course.module.scss'
+
 export const metadata: Metadata = {
 	title: 'Top page'
 }
 
-interface ITopPage {
+interface ICoursePage {
 	params: { alias: string, type: string }
 }
 
@@ -33,11 +37,11 @@ export async function generateStaticParams() {
 	// )
 }
 
-export default async function TopPage({ params }: ITopPage) {
+export default async function CoursePage({ params }: ICoursePage) {
 	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type)
 	if (!firstCategoryItem) notFound()
 
-	const menu = await getMenu(firstCategoryItem.id)
+	const firstCategory = firstCategoryItem.id
 
 	const page = await getPage(params.alias)
 	if (!page) notFound()
@@ -45,13 +49,26 @@ export default async function TopPage({ params }: ITopPage) {
 	const products = await getProducts(page.category)
 
 	return (
-		<div>
-			<div>
-				Menu: {menu.length}
+		<div className={styles.course}>
+			<div className={styles.title}>
+				<HTag tag='h1'>{page.title}</HTag>
+				{products.length && <Tag color='grey' size='m'>{products.length}</Tag>}
+				<span>Сортировка</span>
 			</div>
-			<div>Course: {page.title}</div>
-			<div>
-				Products: {products.length}
+
+			{products.length && products.map((product, index) => (
+				<div key={`${product._id}_${index}`}>
+					{product.title}
+				</div>
+			))}
+
+			<div className={styles.hh_title}>
+				<HTag tag='h2'>Вакансии - {page.category}</HTag>
+				<Tag color='red' size='m'>hh.ru</Tag>
+			</div>
+
+			<div className={styles.hh}>
+				
 			</div>
 		</div>
 	)

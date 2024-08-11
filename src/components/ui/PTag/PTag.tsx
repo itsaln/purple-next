@@ -1,11 +1,15 @@
-import { FC, PropsWithChildren } from 'react'
-import cn from 'clsx'
+'use client'
 
-import { PTagProps } from './PTag.props'
+import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from 'react'
+import cn from 'clsx'
 
 import styles from './PTag.module.scss'
 
-export const PTag: FC<PropsWithChildren<PTagProps>> = ({
+interface IPTag extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+	size?: 's' | 'm' | 'l'
+}
+
+export const PTag: FC<PropsWithChildren<IPTag>> = ({
 	size = 'm',
 	className,
 	children,

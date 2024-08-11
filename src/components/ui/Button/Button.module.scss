@@ -1,7 +1,6 @@
 .button {
-  @apply tw-inline-block tw-border-none tw-rounded-[5px] tw-text-[14px] tw-text-center tw-p-[10px];
+  @apply tw-inline-block tw-border-none tw-rounded-[5px] tw-text-[14px] tw-text-center tw-cursor-pointer tw-p-[10px];
   box-sizing: border-box;
-  cursor: pointer;
   transition: all 0.2s;
 
   &.primary {
