@@ -8,14 +8,18 @@ import { firstLevelMenu } from '@/helpers/helpers'
 import styles from './Type.module.scss'
 
 export const metadata: Metadata = {
-	title: 'Type'
+	title: 'Type page'
+}
+
+interface ITypePage {
+	params: { type: string }
 }
 
 export async function generateStaticParams() {
 	return firstLevelMenu.map(m => `/${m.route}`)
 }
 
-export default async function TypePage({ params }: { params: { type: string } }) {
+export default async function TypePage({ params }: ITypePage) {
 	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type)
 	if (!firstCategoryItem) notFound()
 

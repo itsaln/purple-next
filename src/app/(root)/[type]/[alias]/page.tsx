@@ -8,7 +8,11 @@ import { getProducts } from '@/api/products'
 import { firstLevelMenu } from '@/helpers/helpers'
 
 export const metadata: Metadata = {
-	title: 'Course'
+	title: 'Top page'
+}
+
+interface ITopPage {
+	params: { alias: string, type: string }
 }
 
 export async function generateStaticParams() {
@@ -29,28 +33,16 @@ export async function generateStaticParams() {
 	// )
 }
 
-export default async function CoursePage({
-	params
-}: {
-	params: { alias: string, type: string }
-}) {
+export default async function TopPage({ params }: ITopPage) {
 	const firstCategoryItem = firstLevelMenu.find(m => m.route === params.type)
 	if (!firstCategoryItem) notFound()
 
 	const menu = await getMenu(firstCategoryItem.id)
-		// .then((data) => {
-		// 	if (!data.length) notFound()
-		// })
-		// .catch(() => notFound())
 
 	const page = await getPage(params.alias)
 	if (!page) notFound()
 
 	const products = await getProducts(page.category)
-		// .then((data) => {
-		// 	if (!data.length) notFound()
-		// })
-		// .catch(() => notFound())
 
 	return (
 		<div>
