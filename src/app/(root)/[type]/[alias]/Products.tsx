@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { FC, useReducer } from 'react'
 
 import { declOfNum, priceRu } from '@/helpers/helpers'
@@ -58,7 +59,12 @@ export const Products: FC<IProduct> = ({ page, products }) => {
 					sortedProducts.map((product, index) => (
 						<Card key={`${product._id}_${index}`} className={styles.product}>
 							<div className={styles.logo}>
-								<img src={product.image} alt={product.title} />
+								<Image
+									src={product.image}
+									alt={product.title}
+									width={70}
+									height={70}
+								/>
 							</div>
 
 							<div className={styles.title}>{product.title}</div>

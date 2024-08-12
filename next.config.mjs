@@ -9,6 +9,9 @@ const nextConfig = {
 		// APP_ENV: process.env.APP_ENV,
 		// APP_SERVER_URL: process.env.APP_SERVER_URL
 	},
+	images: {
+		domains: ['courses-top.ru', 'old-images.hb.ru-msk.vkcs.cloud']
+	},
 	webpack(config) {
 		const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'))
 
