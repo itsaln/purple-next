@@ -1,0 +1,8 @@
+.textarea {
+  @apply tw-rounded-[5px] tw-border-none tw-text-[16px] tw-leading-[22px] tw-text-black tw-outline-primary tw-py-[7px] tw-px-[15px];
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .05);
+
+  &::placeholder {
+    @apply tw-text-gray;
+  }
+}

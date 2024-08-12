@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
 
+import { Input, Textarea } from '@/components/ui'
+
 import styles from './Home.module.scss'
 
 export const metadata: Metadata = {
@@ -9,7 +11,8 @@ export const metadata: Metadata = {
 export default async function HomePage() {
 	return (
 		<div className={styles.home}>
-			Home
+			<Input placeholder='Text' />
+			<Textarea placeholder='Text' />
 		</div>
 	)
 }

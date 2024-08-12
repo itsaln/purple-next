@@ -1,0 +1,11 @@
+.search {
+  @apply tw-relative tw-w-full;
+
+  .input {
+    @apply tw-w-full;
+  }
+
+  .button {
+    @apply tw-absolute tw-w-[30px] tw-h-[30px] tw-top-[3px] tw-right-[3px] tw-p-[7px];
+  }
+}

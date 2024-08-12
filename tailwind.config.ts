@@ -7,12 +7,6 @@ import { Colors } from './src/shared/colors'
 const colors = {
 	...Colors,
 	transparent: twColors.transparent,
-	danger: twColors.red,
-	success: twColors.green,
-	gray: twColors.gray,
-	indigo: twColors.indigo,
-	purple: twColors.purple,
-	pink: twColors.pink
 }
 
 const config: Config = {
