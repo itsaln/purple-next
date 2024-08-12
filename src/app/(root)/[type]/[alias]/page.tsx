@@ -14,7 +14,7 @@ import { Card, HTag, Tag } from '@/components/ui'
 import RateIcon from '@/assets/icons/rate.svg'
 import CheckIcon from '@/assets/icons/check.svg'
 
-import { Product } from './Product'
+import { Products } from './Products'
 
 import styles from './Course.module.scss'
 
@@ -61,7 +61,7 @@ export default async function CoursePage({ params }: ICoursePage) {
 
 	return (
 		<>
-			<Product page={page} products={products} />
+			<Products page={page} products={products} />
 
 			<div className={styles.hh_title}>
 				<HTag tag='h2'>Вакансии - {page.category}</HTag>
