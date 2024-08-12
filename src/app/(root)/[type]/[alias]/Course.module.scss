@@ -16,6 +16,7 @@
   }
 
   .price, .price_title {
+    white-space: nowrap;
     grid-column: pricestart / priceend;
   }
 
@@ -24,6 +25,7 @@
   }
 
   .rating, .review_title {
+    white-space: nowrap;
     grid-column: ratestart / end;
   }
 
@@ -54,7 +56,7 @@
 
   .rating {
     @apply tw-grid tw-gap-[5px] tw-self-end;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 20px);
   }
 
   .tags {}
@@ -106,6 +108,8 @@
       > div {}
     }
   }
+
+  .hr2 {}
 
   .actions {}
 }
@@ -191,6 +195,88 @@
   }
 }
 
+@media screen and (max-width: 1320px) {
+
+  .product {
+    grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
+    grid-template-areas:
+    "logo . title title title title title"
+    "logo . tags tags tags tags tags"
+    "price price price . credit . rating"
+    "price_title price_title price_title . credit_title . review_title"
+    "hr hr hr hr hr hr hr"
+    "description description description description description description description"
+    "feature feature feature feature feature feature feature"
+    "adv_block adv_block adv_block adv_block adv_block adv_block adv_block"
+    "hr2 hr2 hr2 hr2 hr2 hr2 hr2"
+    "actions actions actions actions actions actions actions";
+
+    .logo {
+      @apply tw-mb-[20px];
+      grid-area: logo;
+    }
+
+    .title {
+      grid-area: title;
+    }
+
+    .tags {
+      @apply tw-mb-[20px];
+      grid-area: tags;
+    }
+
+    .price {
+      grid-area: price;
+    }
+
+    .credit {
+      grid-area: credit;
+    }
+
+    .rating {
+      grid-area: rating;
+    }
+
+    .price_title {
+      grid-area: price_title;
+    }
+
+    .credit_title {
+      grid-area: credit_title;
+    }
+
+    .review_title {
+      grid-area: review_title;
+    }
+
+    .hr {
+      grid-area: hr;
+    }
+
+    .description {
+      grid-area: description;
+    }
+
+    .feature {
+      @apply tw-mb-[20px];
+      grid-area: feature;
+    }
+
+    .adv_block {
+      grid-area: adv_block;
+    }
+
+    .hr2 {
+      grid-area: hr2;
+    }
+
+    .actions {
+      grid-area: actions;
+    }
+  }
+
+}
+
 @media screen and (max-width: 1200px) {
 
   .hh {
@@ -201,6 +287,30 @@
 
 @media screen and (max-width: 640px) {
 
+  .products_title {
+    grid-template-columns: auto 1fr;
+  }
+
+  .product {
+    grid-template-columns: 70px 30px 1fr;
+    grid-template-areas:
+    "logo . title"
+    "logo . tags"
+    "price_title price_title price"
+    "credit_title credit_title credit"
+    "review_title review_title rating"
+    "hr hr hr"
+    "description description description"
+    "feature feature feature"
+    "adv_block adv_block adv_block"
+    "hr2 hr2 hr2"
+    "actions actions actions";
+
+    .price, .credit, .rating {
+      @apply tw-mb-[10px];
+    }
+  }
+
   .hh {
     &_salary {
       grid-template-columns: 1fr;
@@ -209,6 +319,31 @@
         @apply tw-border-r-0 tw-border-b tw-border-solid tw-border-gray-light tw-pb-[20px] last:tw-border-b-0 last:tw-pb-0;
       }
     }
+  }
+
+}
+
+@media screen and (max-width: 480px) {
+
+  .product {
+    @apply tw-p-[20px];
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "logo"
+    "title"
+    "tags"
+    "price"
+    "price_title"
+    "credit"
+    "credit_title"
+    "rating"
+    "review_title"
+    "hr"
+    "description"
+    "feature"
+    "adv_block"
+    "hr2"
+    "actions";
   }
 
 }

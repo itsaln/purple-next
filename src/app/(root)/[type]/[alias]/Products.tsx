@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { FC, useReducer } from 'react'
+import cn from 'clsx'
 
 import { declOfNum, priceRu } from '@/helpers/helpers'
 
@@ -134,7 +135,7 @@ export const Products: FC<IProduct> = ({ page, products }) => {
 								)}
 							</div>
 
-							<Divider className={styles.hr} />
+							<Divider className={cn(styles.hr, styles.hr2)} />
 
 							<div className={styles.actions}>
 								<Button appearance='primary'>Узнать подробнее</Button>
