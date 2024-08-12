@@ -9,9 +9,10 @@ import { firstLevelMenu, priceRu } from '@/helpers/helpers'
 
 import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
-import { Card, HTag, Tag } from '@/components/ui'
+import { Card, HTag, PTag, Tag } from '@/components/ui'
 
 import RateIcon from '@/assets/icons/rate.svg'
+import CheckIcon from '@/assets/icons/check.svg'
 
 import styles from './Course.module.scss'
 
@@ -57,21 +58,23 @@ export default async function CoursePage({ params }: ICoursePage) {
 	const products = await getProducts(page.category)
 
 	return (
-		<div className={styles.course}>
-			<div className={styles.title}>
-				<HTag tag='h1'>{page.title}</HTag>
-				{products.length && (
-					<Tag color='grey' size='m'>
-						{products.length}
-					</Tag>
-				)}
-				<span>Сортировка</span>
-			</div>
+		<>
+			<div className={styles.course}>
+				<div className={styles.title}>
+					<HTag tag='h1'>{page.title}</HTag>
+					{!!products.length && (
+						<Tag color='grey' size='m'>
+							{products.length}
+						</Tag>
+					)}
+					<span>Сортировка</span>
+				</div>
 
-			{products.length &&
-				products.map((product, index) => (
-					<div key={`${product._id}_${index}`}>{product.title}</div>
-				))}
+				{!!products.length &&
+					products.map((product, index) => (
+						<div key={`${product._id}_${index}`}>{product.title}</div>
+					))}
+			</div>
 
 			<div className={styles.hh_title}>
 				<HTag tag='h2'>Вакансии - {page.category}</HTag>
@@ -126,6 +129,31 @@ export default async function CoursePage({ params }: ICoursePage) {
 					</Card>
 				</div>
 			)}
-		</div>
+
+			{page.advantages && !!page.advantages.length && (
+				<>
+					<HTag tag='h2' className='tw-mb-[25px]'>
+						Преимущества
+					</HTag>
+
+					{page.advantages.map((a, i) => (
+						<div key={`${a._id}_${i}`} className={styles.advantage}>
+							<CheckIcon />
+							<div className={styles.title}>{a.title}</div>
+							<hr className={styles.vline} />
+							<div className={styles.description}>{a.description}</div>
+						</div>
+					))}
+				</>
+			)}
+
+			{page.seoText && <PTag>{page.seoText}</PTag>}
+
+			<HTag tag='h2' className='tw-mb-[25px]'>Получаемые навыки</HTag>
+
+			{page.tags.map((tag, index) => (
+				<Tag key={`${tag}_${index}`} color='primary'>{tag}</Tag>
+			))}
+		</>
 	)
 }

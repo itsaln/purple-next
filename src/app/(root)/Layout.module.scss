@@ -1,5 +1,5 @@
 .layout {
-  @apply tw-grid tw-gap-y-0 tw-gap-x-[30px] tw-min-h-screen;
+  @apply tw-grid tw-gap-y-[40px] tw-gap-x-[30px] tw-min-h-screen;
   grid-template-columns: auto 230px minmax(230px, 1200px) auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
@@ -36,6 +36,10 @@
 
     .sidebar {
       @apply tw-hidden;
+    }
+
+    .content {
+      @apply tw-p-[15px];
     }
 
     .header {

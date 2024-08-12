@@ -1,9 +1,7 @@
 .sidebar {
   @apply tw-grid tw-gap-[20px] tw-content-start;
 
-  .logo {
-    @apply tw-mt-[34px];
-  }
+  .logo {}
 }
 
 .menu {
