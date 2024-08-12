@@ -2,10 +2,21 @@
 
 import { FC, useReducer } from 'react'
 
+import { priceRu } from '@/helpers/helpers'
+
 import { IProductModel } from '@/shared/interfaces/product.interface'
 import { ITopPageModel } from '@/shared/interfaces/page.interface'
 
-import { Button, Card, HTag, Rating, Sort, SortEnum, Tag } from '@/components/ui'
+import {
+	Button,
+	Card,
+	Divider,
+	HTag,
+	Rating,
+	Sort,
+	SortEnum,
+	Tag
+} from '@/components/ui'
 
 import { sortReducer } from './sort.reducer'
 
@@ -49,45 +60,72 @@ export const Products: FC<IProduct> = ({ page, products }) => {
 							<div className={styles.logo}>
 								<img src={product.image} alt={product.title} />
 							</div>
+
 							<div className={styles.title}>{product.title}</div>
-							<div className={styles.price}>{product.price}</div>
-							<div className={styles.credit}>{product.credit}</div>
-							<div className={styles.rating}>
-								<Rating rating={product.reviewAvg ?? product.initialRating} />
+
+							<div className={styles.price}>
+								{priceRu(product.price)}
+								{product.oldPrice && (
+									<Tag color='green' className='tw-ml-[5px]'>
+										{priceRu(product.price - product.oldPrice)}
+									</Tag>
+								)}
 							</div>
+
+							<div className={styles.credit}>
+								{priceRu(product.credit)}/
+								<span className={styles.month}>мес</span>
+							</div>
+
+							<Rating
+								className={styles.rating}
+								rating={product.reviewAvg ?? product.initialRating}
+							/>
+
 							<div className={styles.tags}>
 								{product.categories.map((c, i) => (
-									<Tag key={`${c}_${i}`} color='ghost'>
+									<Tag key={`${c}_${i}`} color='ghost' className='tw-mt-[7px]'>
 										{c}
 									</Tag>
 								))}
 							</div>
+
 							<div className={styles.price_title}>цена</div>
 							<div className={styles.credit_title}>кредит</div>
 							<div className={styles.review_title}>
 								{product.reviewCount} отзывов
 							</div>
-							<div className={styles.hr}>
-								<hr className={styles.hr} />
-							</div>
+
+							<Divider className={styles.hr} />
+
 							<div className={styles.description}>{product.description}</div>
 							<div className={styles.feature}>фичи</div>
+
 							<div className={styles.adv_block}>
-								<div className={styles.advantages}>
-									<div>Преимущества</div>
-									<div>{product.advantages}</div>
-								</div>
-								<div className={styles.disadvantages}>
-									<div>Недостатки</div>
-									<div>{product.disadvantages}</div>
-								</div>
+								{product.advantages && (
+									<div className={styles.advantages}>
+										<div className={styles.adv_title}>Преимущества</div>
+										<div>{product.advantages}</div>
+									</div>
+								)}
+
+								{product.disadvantages && (
+									<div className={styles.disadvantages}>
+										<div className={styles.adv_title}>Недостатки</div>
+										<div>{product.disadvantages}</div>
+									</div>
+								)}
 							</div>
-							<div className={styles.hr}>
-								<hr className={styles.hr} />
-							</div>
+
+							<Divider className={styles.hr} />
+
 							<div className={styles.actions}>
 								<Button appearance='primary'>Узнать подробнее</Button>
-								<Button appearance='ghost' arrow='right'>
+								<Button
+									appearance='ghost'
+									arrow='right'
+									className='tw-ml-[20px]'
+								>
 									Читать отзывы
 								</Button>
 							</div>
