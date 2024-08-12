@@ -9,10 +9,12 @@ import { firstLevelMenu, priceRu } from '@/helpers/helpers'
 
 import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
-import { Card, HTag, PTag, Tag } from '@/components/ui'
+import { Card, HTag, Tag } from '@/components/ui'
 
 import RateIcon from '@/assets/icons/rate.svg'
 import CheckIcon from '@/assets/icons/check.svg'
+
+import { Product } from './Product'
 
 import styles from './Course.module.scss'
 
@@ -59,22 +61,7 @@ export default async function CoursePage({ params }: ICoursePage) {
 
 	return (
 		<>
-			<div className={styles.course}>
-				<div className={styles.title}>
-					<HTag tag='h1'>{page.title}</HTag>
-					{!!products.length && (
-						<Tag color='grey' size='m'>
-							{products.length}
-						</Tag>
-					)}
-					<span>Сортировка</span>
-				</div>
-
-				{!!products.length &&
-					products.map((product, index) => (
-						<div key={`${product._id}_${index}`}>{product.title}</div>
-					))}
-			</div>
+			<Product page={page} products={products} />
 
 			<div className={styles.hh_title}>
 				<HTag tag='h2'>Вакансии - {page.category}</HTag>
@@ -147,14 +134,23 @@ export default async function CoursePage({ params }: ICoursePage) {
 				</>
 			)}
 
-			{page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{
-				__html: page.seoText
-			}} />}
+			{page.seoText && (
+				<div
+					className={styles.seo}
+					dangerouslySetInnerHTML={{
+						__html: page.seoText
+					}}
+				/>
+			)}
 
-			<HTag tag='h2' className='tw-mt-[50px] tw-mb-[25px]'>Получаемые навыки</HTag>
+			<HTag tag='h2' className='tw-mt-[50px] tw-mb-[25px]'>
+				Получаемые навыки
+			</HTag>
 
 			{page.tags.map((tag, index) => (
-				<Tag key={`${tag}_${index}`} color='primary'>{tag}</Tag>
+				<Tag key={`${tag}_${index}`} color='primary'>
+					{tag}
+				</Tag>
 			))}
 		</>
 	)

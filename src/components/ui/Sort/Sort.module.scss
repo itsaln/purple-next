@@ -1,0 +1,25 @@
+.sort {
+  @apply tw-grid tw-gap-[40px];
+  grid-template-columns: auto auto;
+
+  > span {
+    @apply tw-grid tw-gap-[8px] tw-items-center tw-cursor-pointer;
+    grid-template-columns: 20px 1fr;
+
+    &.active {
+      @apply tw-font-bold tw-text-primary;
+
+      .sort_icon {
+        @apply tw-block;
+      }
+    }
+
+    &:not(.active) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &_icon {
+    @apply tw-hidden tw-mr-[8px];
+  }
+}
