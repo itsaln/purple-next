@@ -105,7 +105,9 @@ export const Products: FC<IProduct> = ({ page, products }) => {
 									<div key={`${c.name}_${i}`} className={styles.characteristic}>
 										<span className={styles.characteristic_name}>{c.name}</span>
 										<span className={styles.characteristic_dots} />
-										<span className={styles.characteristic_value}>{c.value}</span>
+										<span className={styles.characteristic_value}>
+											{c.value}
+										</span>
 									</div>
 								))}
 							</div>
