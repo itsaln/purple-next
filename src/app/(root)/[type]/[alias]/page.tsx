@@ -132,7 +132,7 @@ export default async function CoursePage({ params }: ICoursePage) {
 
 			{page.advantages && !!page.advantages.length && (
 				<>
-					<HTag tag='h2' className='tw-mb-[25px]'>
+					<HTag tag='h2' className='tw-mt-[50px] tw-mb-[25px]'>
 						Преимущества
 					</HTag>
 
@@ -147,9 +147,11 @@ export default async function CoursePage({ params }: ICoursePage) {
 				</>
 			)}
 
-			{page.seoText && <PTag>{page.seoText}</PTag>}
+			{page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{
+				__html: page.seoText
+			}} />}
 
-			<HTag tag='h2' className='tw-mb-[25px]'>Получаемые навыки</HTag>
+			<HTag tag='h2' className='tw-mt-[50px] tw-mb-[25px]'>Получаемые навыки</HTag>
 
 			{page.tags.map((tag, index) => (
 				<Tag key={`${tag}_${index}`} color='primary'>{tag}</Tag>
