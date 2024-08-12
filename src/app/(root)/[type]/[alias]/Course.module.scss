@@ -69,6 +69,21 @@
 
   .feature {
     grid-column: start / middle;
+
+    .characteristic {
+      @apply tw-grid tw-gap-[10px] tw-items-baseline tw-text-[16px] tw-leading-[32px] tw-pr-[60px];
+      grid-template-columns: auto 1fr auto;
+
+      &_name {
+        @apply tw-font-bold;
+      }
+
+      &_dots {
+        @apply tw-border-b tw-border-dashed tw-border-gray-light tw-mb-[5px];
+      }
+
+      &_value {}
+    }
   }
 
   .adv_block {

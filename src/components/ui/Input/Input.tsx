@@ -5,13 +5,9 @@ import cn from 'clsx'
 
 import styles from './Input.module.scss'
 
-interface IInput
-	extends DetailedHTMLProps<
-		InputHTMLAttributes<HTMLInputElement>,
-		HTMLInputElement
-	> {}
-
-export const Input: FC<IInput> = ({ type = 'text', className, ...props }) => {
+export const Input: FC<
+	DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+> = ({ type = 'text', className, ...props }) => {
 	return (
 		<input type={type} className={cn(styles.input, className)} {...props} />
 	)

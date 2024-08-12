@@ -5,14 +5,11 @@ import cn from 'clsx'
 
 import styles from './Textarea.module.scss'
 
-interface ITextarea
-	extends DetailedHTMLProps<
+export const Textarea: FC<
+	DetailedHTMLProps<
 		TextareaHTMLAttributes<HTMLTextAreaElement>,
 		HTMLTextAreaElement
-	> {}
-
-export const Textarea: FC<ITextarea> = ({ className, ...props }) => {
-	return (
-		<textarea className={cn(styles.textarea, className)} {...props} />
-	)
+	>
+> = ({ className, ...props }) => {
+	return <textarea className={cn(styles.textarea, className)} {...props} />
 }

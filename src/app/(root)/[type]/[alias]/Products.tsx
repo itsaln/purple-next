@@ -2,7 +2,7 @@
 
 import { FC, useReducer } from 'react'
 
-import { priceRu } from '@/helpers/helpers'
+import { declOfNum, priceRu } from '@/helpers/helpers'
 
 import { IProductModel } from '@/shared/interfaces/product.interface'
 import { ITopPageModel } from '@/shared/interfaces/page.interface'
@@ -93,13 +93,22 @@ export const Products: FC<IProduct> = ({ page, products }) => {
 							<div className={styles.price_title}>цена</div>
 							<div className={styles.credit_title}>кредит</div>
 							<div className={styles.review_title}>
-								{product.reviewCount} отзывов
+								{product.reviewCount}{' '}
+								{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
 							</div>
 
 							<Divider className={styles.hr} />
 
 							<div className={styles.description}>{product.description}</div>
-							<div className={styles.feature}>фичи</div>
+							<div className={styles.feature}>
+								{product.characteristics.map((c, i) => (
+									<div key={`${c.name}_${i}`} className={styles.characteristic}>
+										<span className={styles.characteristic_name}>{c.name}</span>
+										<span className={styles.characteristic_dots} />
+										<span className={styles.characteristic_value}>{c.value}</span>
+									</div>
+								))}
+							</div>
 
 							<div className={styles.adv_block}>
 								{product.advantages && (
