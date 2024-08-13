@@ -5,13 +5,13 @@ import { getMenu } from '@/api/menu'
 
 import { firstLevelMenu } from '@/helpers/helpers'
 
-import styles from './Type.module.scss'
+import Modules from '@/screens/modules/Modules'
 
 export const metadata: Metadata = {
-	title: 'Type page'
+	title: 'Modules page'
 }
 
-interface ITypePage {
+interface IModulesPage {
 	params: { type: string }
 }
 
@@ -19,17 +19,11 @@ export async function generateStaticParams() {
 	return firstLevelMenu.map((m) => `/${m.route}`)
 }
 
-export default async function TypePage({ params }: ITypePage) {
+export default async function ModulePage({ params }: IModulesPage) {
 	const firstCategoryItem = firstLevelMenu.find((m) => m.route === params.type)
 	if (!firstCategoryItem) notFound()
 
-	const firstCategory = firstCategoryItem.id
-	const menu = await getMenu(firstCategory)
+	const menu = await getMenu(firstCategoryItem.id)
 
-	return (
-		<div className={styles.type}>
-			<div>Type: {firstCategory}</div>
-			<div>Menu: {menu.length}</div>
-		</div>
-	)
+	return <Modules menu={menu} firstCategory={firstCategoryItem.id} />
 }

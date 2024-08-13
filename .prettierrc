@@ -11,7 +11,6 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@/screens/(.*)$",
-    "^@/ui/(.*)$",
     "^../(.*)",
     "^./(.*)",
     "(.scss)$"
