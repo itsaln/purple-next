@@ -10,9 +10,18 @@ import { declOfNum, priceRu } from '@/helpers/helpers'
 
 import { IProductModel } from '@/shared/interfaces/product.interface'
 
-import { Button, Card, Divider, Rating, Tag } from '@/components/ui'
+import {
+	Button,
+	Card,
+	Divider,
+	Input,
+	Rating,
+	Tag,
+	Textarea
+} from '@/components/ui'
 
 import UserIcon from '@/assets/icons/user.svg'
+import CloseIcon from '@/assets/icons/close.svg'
 
 import styles from './Course.module.scss'
 
@@ -143,6 +152,32 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 				) : (
 					<div className={styles.not_found}>Пока нет отзывов</div>
 				)}
+				<>
+					<div className={styles.form}>
+						<Input placeholder='Имя' className={styles.form_input} />
+						<Input placeholder='Заголовок отзыва' className={styles.form_input} />
+						<div className={styles.form_rating}>
+							<span>Оценка:</span>
+							<Rating rating={0} />
+						</div>
+						<Textarea placeholder='Текст отзыва' className={styles.form_description} />
+						<div className={styles.form_submit}>
+							<Button appearance='primary'>Отправить</Button>
+							<span className='tw-ml-[15px]'>
+							* Перед публикацией отзыв пройдет предварительную модерацию и
+							проверку
+						</span>
+						</div>
+					</div>
+
+					<div className={styles.success}>
+						<div className={styles.success_title}>Ваш отзыв отправлен</div>
+						<div>
+							Спасибо, ваш отзыв будет опубликован после проверки.
+						</div>
+						<CloseIcon className={styles.close} />
+					</div>
+				</>
 			</Card>
 		</>
 	)

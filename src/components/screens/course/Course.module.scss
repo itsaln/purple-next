@@ -63,10 +63,7 @@
       }
     }
 
-    .rating {
-      @apply tw-grid tw-gap-[5px] tw-self-end;
-      grid-template-columns: repeat(5, 20px);
-    }
+    .rating {}
 
     .tags {
     }
@@ -135,6 +132,8 @@
   }
 
   .reviews {
+    @apply tw-p-[30px];
+
     &.opened {
       @apply tw-rounded-tl-none tw-rounded-tr-none tw-max-h-[auto];
     }
@@ -144,7 +143,7 @@
     }
 
     .review {
-      @apply tw-grid tw-gap-[10px] tw-items-center tw-border-t first:tw-border-t-0 tw-border-solid tw-border-gray-light tw-text-[14px] tw-leading-[24px] tw-p-[30px];
+      @apply tw-grid tw-gap-[10px] tw-items-center tw-border-t first:tw-border-t-0 tw-border-solid tw-border-gray-light tw-text-[14px] tw-leading-[24px] first:tw-pt-0 tw-pt-[20px] first:tw-mt-0 tw-mt-[20px];
       grid-template-columns: [start] auto 1fr auto auto [end];
 
       &_user {}
@@ -171,6 +170,38 @@
 
     .not_found {
       @apply tw-text-[14px] tw-leading-[19px] tw-text-red tw-p-[30px];
+    }
+
+    .form {
+      @apply tw-grid tw-gap-y-[20px] tw-gap-x-[30px] tw-items-center tw-text-[14px] tw-leading-[24px] tw-mt-[30px];
+      grid-template-columns: [start] auto 1fr auto [end];
+
+      &_input {
+        @apply tw-justify-self-start;
+      }
+
+      &_rating {
+        @apply tw-grid tw-gap-[20px] tw-items-center ;
+        grid-template-columns: auto 1fr;
+      }
+
+      &_description, &_submit {
+        grid-column: start / end;
+      }
+
+      &_submit {}
+    }
+
+    .success {
+      @apply tw-relative tw-rounded-[5px] tw-bg-green-light tw-p-[20px] tw-mt-[20px];
+
+      &_title {
+        @apply tw-font-bold;
+      }
+
+      .close {
+        @apply tw-absolute tw-top-[20px] tw-right-[20px] tw-cursor-pointer;
+      }
     }
   }
 }
@@ -280,6 +311,22 @@
 }
 
 @media screen and (max-width: 1200px) {
+
+  .products {
+    .reviews {
+      .form {
+        grid-template-columns: [start] 1fr 1fr [end];
+
+        &_input {
+          @apply tw-justify-self-stretch;
+        }
+
+        &_rating {
+          grid-column: start / end;
+        }
+      }
+    }
+  }
 
   .hh {
     .content {
@@ -416,6 +463,10 @@
           grid-column: start / end;
         }
       }
+
+      .form {
+        grid-template-columns: [start] 1fr [end];
+      }
     }
   }
 
@@ -458,9 +509,7 @@
     }
 
     .reviews {
-      .review, .not_found {
-        @apply tw-p-[20px];
-      }
+      @apply tw-p-[20px];
     }
   }
 

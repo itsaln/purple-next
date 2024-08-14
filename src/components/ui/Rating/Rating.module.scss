@@ -1,5 +1,6 @@
 .rating {
-  @apply tw-block;
+  @apply tw-grid tw-gap-[5px] tw-self-end;
+  grid-template-columns: repeat(5, 20px);
 }
 
 .star {
