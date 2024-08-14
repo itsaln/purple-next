@@ -5,6 +5,7 @@ import Image from 'next/image'
 import cn from 'clsx'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale/ru'
+import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 
 import { declOfNum, priceRu } from '@/helpers/helpers'
 
@@ -25,8 +26,21 @@ import CloseIcon from '@/assets/icons/close.svg'
 
 import styles from './Course.module.scss'
 
+interface IReviewForm {
+	name: string
+	title: string
+	description: string
+	rating: number
+}
+
 const Product: FC<{ product: IProductModel }> = ({ product }) => {
 	const [isReviewOpened, setIsReviewOpened] = useState(false)
+
+	const { register, control, handleSubmit, formState: {errors} } = useForm<IReviewForm>()
+
+	const onSubmit: SubmitHandler<IReviewForm> = (data) => {
+		console.log('data:---', data)
+	}
 
 	return (
 		<>
@@ -153,28 +167,69 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 					<div className={styles.not_found}>Пока нет отзывов</div>
 				)}
 				<>
-					<div className={styles.form}>
-						<Input placeholder='Имя' className={styles.form_input} />
-						<Input placeholder='Заголовок отзыва' className={styles.form_input} />
+					<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+						<Input
+							{...register('name', {
+								required: {
+									value: true,
+									message: 'Заполните имя'
+								}
+							})}
+							placeholder='Имя'
+							className={styles.form_input}
+							error={errors.name}
+						/>
+						<Input
+							{...register('title', {
+								required: {
+									value: true,
+									message: 'Заполните заголовок'
+								}
+							})}
+							placeholder='Заголовок отзыва'
+							className={styles.form_input}
+							error={errors.title}
+						/>
 						<div className={styles.form_rating}>
 							<span>Оценка:</span>
-							<Rating rating={0} />
+							<Controller
+								control={control}
+								name={'rating'}
+								render={({ field }) => (
+									<Rating
+										ref={field.ref}
+										isEditable
+										rating={field.value}
+										setRating={field.onChange}
+									/>
+								)}
+							/>
 						</div>
-						<Textarea placeholder='Текст отзыва' className={styles.form_description} />
+						<Textarea
+							{...register('description', {
+								required: {
+									value: true,
+									message: 'Заполните описание'
+								}
+							})}
+							placeholder='Текст отзыва'
+							className={styles.form_description}
+							error={errors.description}
+						/>
 						<div className={styles.form_submit}>
-							<Button appearance='primary'>Отправить</Button>
+							<Button type='submit' appearance='primary'>
+								Отправить
+							</Button>
 							<span className='tw-ml-[15px]'>
-							* Перед публикацией отзыв пройдет предварительную модерацию и
-							проверку
-						</span>
+								* Перед публикацией отзыв пройдет предварительную модерацию и
+								проверку
+							</span>
 						</div>
-					</div>
+					</form>
 
 					<div className={styles.success}>
 						<div className={styles.success_title}>Ваш отзыв отправлен</div>
-						<div>
-							Спасибо, ваш отзыв будет опубликован после проверки.
-						</div>
+						<div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
 						<CloseIcon className={styles.close} />
 					</div>
 				</>

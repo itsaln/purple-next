@@ -1,15 +1,32 @@
-'use client'
-
-import { DetailedHTMLProps, FC, TextareaHTMLAttributes } from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
+import { FieldError } from 'react-hook-form'
 import cn from 'clsx'
 
 import styles from './Textarea.module.scss'
 
-export const Textarea: FC<
-	DetailedHTMLProps<
-		TextareaHTMLAttributes<HTMLTextAreaElement>,
-		HTMLTextAreaElement
-	>
-> = ({ className, ...props }) => {
-	return <textarea className={cn(styles.textarea, className)} {...props} />
+interface IFieldProps {
+	error?: FieldError
 }
+
+type TypeTextareaPropsField = InputHTMLAttributes<HTMLTextAreaElement> &
+	IFieldProps
+
+export const Textarea = forwardRef<HTMLTextAreaElement, TypeTextareaPropsField>(
+	({ error, className, ...props }, ref) => {
+		return (
+			<div className={cn(styles.field, className)}>
+				<textarea
+					ref={ref}
+					className={cn(styles.textarea, {
+						[styles.invalid]: error
+					})}
+					{...props}
+				/>
+
+				{error && <span className={styles.error}>{error.message}</span>}
+			</div>
+		)
+	}
+)
+
+Textarea.displayName = 'Textarea'

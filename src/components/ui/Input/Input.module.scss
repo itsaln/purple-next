@@ -1,6 +1,18 @@
+.field {
+  @apply tw-relative;
+}
+
 .input {
-  @apply tw-rounded-[5px] tw-border-none tw-text-[16px] tw-leading-[22px] tw-text-black tw-outline-primary tw-py-[7px] tw-px-[15px];
+  @apply tw-w-full tw-rounded-[5px] tw-border-none tw-text-[16px] tw-leading-[22px] tw-text-black tw-outline-primary tw-py-[7px] tw-px-[15px];
   box-shadow: 0 4px 4px rgba(0, 0, 0, .05);
+
+  &.invalid {
+    @apply tw-outline-red ;
+
+    & + .error {
+      @apply tw-absolute tw-text-red tw-left-0 -tw-bottom-[20px];
+    }
+  }
 
   &::placeholder {
     @apply tw-text-gray;

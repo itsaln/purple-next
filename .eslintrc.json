@@ -9,6 +9,9 @@
 //    "@typescript-eslint/semi": [
 //      "warn"
 //    ],
+    "@typescript-eslint/no-empty-object-type": [
+      "warn"
+    ],
     "@typescript-eslint/no-empty-interface": [
       "error",
       {
