@@ -29,7 +29,10 @@ interface IRating extends TypeRatingPropsField {
 }
 
 export const Rating = forwardRef<HTMLDivElement, IRating>(
-	({ isEditable = false, rating, setRating, className, ...props }, ref) => {
+	(
+		{ isEditable = false, rating, setRating, error, className, ...props },
+		ref
+	) => {
 		const [ratingArray, setRatingArray] = useState<ReactNode[]>(
 			new Array(5).fill(<></>)
 		)
@@ -79,10 +82,18 @@ export const Rating = forwardRef<HTMLDivElement, IRating>(
 		}, [rating]) // eslint-disable-next-line react-hooks/exhaustive-deps
 
 		return (
-			<div ref={ref} className={cn(styles.rating, className)} {...props}>
+			<div
+				ref={ref}
+				className={cn(styles.rating, className, {
+					[styles.invalid]: error
+				})}
+				{...props}
+			>
 				{ratingArray.map((r, i) => (
 					<span key={`${r}_${i}`}>{r}</span>
 				))}
+
+				{error && <span className={styles.error}>{error.message}</span>}
 			</div>
 		)
 	}

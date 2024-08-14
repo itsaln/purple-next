@@ -1,6 +1,14 @@
 .rating {
-  @apply tw-grid tw-gap-[5px] tw-self-end;
+  @apply tw-relative tw-grid tw-gap-[5px] tw-self-end;
   grid-template-columns: repeat(5, 20px);
+
+  &.invalid {
+    .star {
+      > svg {
+        @apply tw-stroke-red;
+      }
+    }
+  }
 }
 
 .star {
@@ -17,4 +25,8 @@
   &.editable {
     @apply tw-cursor-pointer;
   }
+}
+
+.error {
+  @apply tw-absolute tw-text-red tw-left-0 -tw-bottom-[20px];
 }

@@ -36,7 +36,12 @@ interface IReviewForm {
 const Product: FC<{ product: IProductModel }> = ({ product }) => {
 	const [isReviewOpened, setIsReviewOpened] = useState(false)
 
-	const { register, control, handleSubmit, formState: {errors} } = useForm<IReviewForm>()
+	const {
+		register,
+		control,
+		handleSubmit,
+		formState: { errors }
+	} = useForm<IReviewForm>()
 
 	const onSubmit: SubmitHandler<IReviewForm> = (data) => {
 		console.log('data:---', data)
@@ -164,7 +169,10 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 						</div>
 					))
 				) : (
-					<div className={styles.not_found}>Пока нет отзывов</div>
+					<div className={styles.not_found}>
+						<span className='tw-text-red'>Пока нет отзывов.</span>{' '}
+						<span className='tw-text-primary'>Оставьте первую</span>
+					</div>
 				)}
 				<>
 					<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -195,12 +203,19 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 							<Controller
 								control={control}
 								name={'rating'}
-								render={({ field }) => (
+								rules={{
+									required: {
+										value: true,
+										message: 'Укажите рейтинг'
+									}
+								}}
+								render={({ field, fieldState }) => (
 									<Rating
 										ref={field.ref}
 										isEditable
 										rating={field.value}
 										setRating={field.onChange}
+										error={fieldState.error}
 									/>
 								)}
 							/>
