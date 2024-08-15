@@ -5,7 +5,7 @@
 }
 
 .menu {
-  .firstLevel {
+  .first_level {
     @apply tw-grid tw-gap-[20px] tw-items-center tw-font-medium tw-text-[18px] tw-leading-[25px] tw-mt-[20px];
     grid-template-columns: 24px 1fr;
 
@@ -19,26 +19,26 @@
     }
   }
 
-  .secondBlock {
+  .second_block {
     @apply tw-border-l tw-border-solid tw-border-[#DFDFDF] tw-mt-[15px] tw-ml-[12px] tw-pl-[32px];
 
-    .secondLevel {
+    .second_level {
       @apply tw-font-light tw-text-[12px] tw-leading-[16px] tw-text-gray-dark tw-uppercase tw-cursor-pointer tw-mb-[10px];
     }
-    .secondLevelBlock {
-      @apply tw-hidden;
+    .second_level_block {
+      @apply tw-overflow-hidden;
 
-      &.opened {
-        @apply tw-block;
-
-        &:last-child {
-          @apply tw-mb-[20px];
-        }
-      }
+      //&.opened {
+      //  @apply tw-block;
+      //
+      //  &:last-child {
+      //    @apply tw-mb-[20px];
+      //  }
+      //}
     }
   }
 
-  .thirdLevel {
+  .third_level {
     @apply tw-block tw-font-medium tw-text-[14px] tw-leading-[19px] tw-cursor-pointer tw-mb-[10px];
 
     &.active, &:hover {

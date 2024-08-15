@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FC, useState } from 'react'
 import cn from 'clsx'
+import { motion } from 'framer-motion'
 
 import { firstLevelMenu } from '@/helpers/helpers'
 
@@ -22,6 +23,30 @@ interface IMenu {
 export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
 	const pathname = usePathname()
 
+	const variants = {
+		visible: {
+			// marginBottom: 20,
+			transition: {
+				when: 'beforeChildren',
+				staggerChildren: 0.1
+			}
+		},
+		hidden: {
+			// marginBottom: 0
+		}
+	}
+
+	const variantsChildren = {
+		visible: {
+			opacity: 1,
+			height: 29
+		},
+		hidden: {
+			opacity: 0,
+			height: 0
+		}
+	}
+
 	const [menuState, setMenuState] = useState(menu)
 
 	const openSecondLevel = (secondCategory: string) => {
@@ -41,7 +66,7 @@ export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
 					<div key={`${m.id}_${index}`}>
 						<Link href={`/${m.route}`}>
 							<div
-								className={cn(styles.firstLevel, {
+								className={cn(styles.first_level, {
 									[styles.active]: m.id === firstCategory
 								})}
 							>
@@ -58,7 +83,7 @@ export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
 
 	const buildSecondLevel = (menuItem: IFirstLevelMenuItem) => {
 		return (
-			<div className={styles.secondBlock}>
+			<div className={styles.second_block}>
 				{menuState.map((m, i) => {
 					if (m.pages.map((p) => p.alias).includes(pathname.split('/')[2])) {
 						m.isOpened = true
@@ -67,18 +92,20 @@ export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
 					return (
 						<div key={`${m._id.secondCategory}_${i}`}>
 							<div
-								className={styles.secondLevel}
+								className={styles.second_level}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
 							>
 								{m._id.secondCategory}
 							</div>
-							<div
-								className={cn(styles.secondLevelBlock, {
-									[styles.opened]: m.isOpened
-								})}
+							<motion.div
+								layout
+								variants={variants}
+								initial={m.isOpened ? 'visible' : 'hidden'}
+								animate={m.isOpened ? 'visible' : 'hidden'}
+								className={cn(styles.second_level_block)}
 							>
 								{buildThirdLevel(m.pages, menuItem.route)}
-							</div>
+							</motion.div>
 						</div>
 					)
 				})}
@@ -88,19 +115,18 @@ export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
 
 	const buildThirdLevel = (pages: IPageItem[], route: string) => {
 		return pages.map((p, i) => (
-			<Link
-				key={`${p._id}_${i}`}
-				href={`/${route}/${p.alias}`}
-				className={cn(styles.thirdLevel, {
-					[styles.active]: `/${route}/${p.alias}` === pathname
-				})}
-			>
-				{p.category}
-			</Link>
+			<motion.div key={`${p._id}_${i}`} variants={variantsChildren}>
+				<Link
+					href={`/${route}/${p.alias}`}
+					className={cn(styles.third_level, {
+						[styles.active]: `/${route}/${p.alias}` === pathname
+					})}
+				>
+					{p.category}
+				</Link>
+			</motion.div>
 		))
 	}
 
-	return (
-		<div className={styles.menu}>{buildFirstLevel()}</div>
-	)
+	return <div className={styles.menu}>{buildFirstLevel()}</div>
 }
