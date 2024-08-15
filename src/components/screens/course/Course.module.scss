@@ -11,8 +11,12 @@
   .list {
     @apply tw-mt-[25px];
   }
+}
 
-  .product {
+.product {
+  @apply tw-block;
+
+  &_card {
     @apply tw-grid tw-p-[30px] tw-mt-[30px];
     grid-template-columns: [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
 
@@ -134,10 +138,13 @@
     }
 
     .actions {
+      > button {
+        @apply tw-mr-[20px];
+      }
     }
   }
 
-  .reviews {
+  &_reviews {
     @apply tw-p-[30px];
 
     &.opened {
@@ -334,8 +341,8 @@
 
 @media screen and (max-width: 1200px) {
 
-  .products {
-    .reviews {
+  .product {
+    &_reviews {
       .form {
         grid-template-columns: [start] 1fr 1fr [end];
 
@@ -360,8 +367,8 @@
 
 @media screen and (max-width: 1320px) {
 
-  .products {
-    .product {
+  .product {
+    &_card {
       grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
       grid-template-areas:
         "logo . title title title title title"
@@ -448,8 +455,10 @@
     .title {
       grid-template-columns: auto 1fr;
     }
+  }
 
-    .product {
+  .product {
+    &_card {
       grid-template-columns: 70px 30px 1fr;
       grid-template-areas:
         "logo . title"
@@ -469,7 +478,7 @@
       }
     }
 
-    .reviews {
+    &_reviews {
       .review {
         grid-template-columns: [start] 30px [titlestart] auto [dateend] 1fr [end];
 
@@ -508,8 +517,8 @@
 
 @media screen and (max-width: 480px) {
 
-  .products {
-    .product {
+  .product {
+    &_card {
       @apply tw-p-[20px];
       grid-template-columns: 1fr;
       grid-template-areas:
@@ -528,9 +537,18 @@
         "adv_block"
         "hr2"
         "actions";
+
+      .actions {
+        @apply tw-grid;
+        grid-template-columns: 1fr;
+
+        > button {
+          @apply tw-mb-[10px] last:tw-mb-0 tw-mr-0;
+        }
+      }
     }
 
-    .reviews {
+    &_reviews {
       @apply tw-p-[20px];
     }
   }

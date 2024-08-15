@@ -46,7 +46,7 @@ const Course: FC<ICourseProps> = ({ page, products, firstCategory }) => {
 			<div className={styles.products}>
 				<div className={styles.title}>
 					<HTag tag='h1'>{page.title}</HTag>
-					{!!products.length && (
+					{products && (
 						<Tag color='grey' size='m'>
 							{products.length}
 						</Tag>
@@ -55,10 +55,14 @@ const Course: FC<ICourseProps> = ({ page, products, firstCategory }) => {
 					<Sort sort={sort} setSort={setSort} />
 				</div>
 
-				{!!sortedProducts.length && (
+				{sortedProducts && (
 					<div className={styles.list}>
 						{sortedProducts.map((product, index) => (
-							<Product key={`${product._id}_${index}`} product={product} />
+							<Product
+								key={`${product._id}_${index}`}
+								product={product}
+								layout
+							/>
 						))}
 					</div>
 				)}
