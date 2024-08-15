@@ -21,7 +21,9 @@ export const Up: FC = () => {
 	}
 
 	useEffect(() => {
-		const ignore = controls.start({ opacity: scrollY / document.body.scrollHeight })
+		const ignore = controls.start({
+			opacity: scrollY / document.body.scrollHeight
+		})
 	}, [scrollY, controls])
 
 	return (

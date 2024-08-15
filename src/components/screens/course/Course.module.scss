@@ -14,7 +14,7 @@
 }
 
 .product {
-  @apply tw-block;
+  @apply tw-overflow-hidden;
 
   &_card {
     @apply tw-grid tw-p-[30px] tw-mt-[30px];
@@ -146,14 +146,6 @@
 
   &_reviews {
     @apply tw-p-[30px];
-
-    &.opened {
-      @apply tw-rounded-tl-none tw-rounded-tr-none tw-max-h-[auto];
-    }
-
-    &.closed {
-      @apply tw-max-h-0 tw-overflow-hidden tw-p-0;
-    }
 
     .review {
       @apply tw-grid tw-gap-[10px] tw-items-center tw-border-t first:tw-border-t-0 tw-border-solid tw-border-gray-light tw-text-[14px] tw-leading-[24px] first:tw-pt-0 tw-pt-[20px] first:tw-mt-0 tw-mt-[20px];
