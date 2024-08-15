@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useReducer } from 'react'
+import { FC, useEffect, useReducer } from 'react'
 
 import {
 	ITopPageModel,
@@ -36,6 +36,10 @@ const Course: FC<ICourseProps> = ({ page, products, firstCategory }) => {
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort })
 	}
+
+	useEffect(() => {
+		dispatchSort({ type: 'reset', initialState: products })
+	}, [products])
 
 	return (
 		<div className={styles.course}>
