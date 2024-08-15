@@ -192,15 +192,31 @@
       &_submit {}
     }
 
+    .success, .error {
+      @apply tw-relative tw-rounded-[5px] tw-p-[20px] tw-mt-[20px];
+
+      .close {
+        @apply tw-absolute tw-top-[20px] tw-right-[20px] tw-cursor-pointer;
+      }
+    }
+
     .success {
-      @apply tw-relative tw-rounded-[5px] tw-bg-green-light tw-p-[20px] tw-mt-[20px];
+      @apply tw-bg-green-light;
 
       &_title {
         @apply tw-font-bold;
       }
 
+      .close {}
+    }
+
+    .error {
+      @apply tw-bg-red-light;
+
       .close {
-        @apply tw-absolute tw-top-[20px] tw-right-[20px] tw-cursor-pointer;
+        path {
+          @apply tw-stroke-red;
+        }
       }
     }
   }

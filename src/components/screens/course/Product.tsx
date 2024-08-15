@@ -25,6 +25,8 @@ import UserIcon from '@/assets/icons/user.svg'
 import CloseIcon from '@/assets/icons/close.svg'
 
 import styles from './Course.module.scss'
+import axios from 'axios'
+import { API } from '@/app/api'
 
 interface IReviewForm {
 	name: string
@@ -33,18 +35,41 @@ interface IReviewForm {
 	rating: number
 }
 
+interface IReviewSentResponse {
+	message: string
+}
+
 const Product: FC<{ product: IProductModel }> = ({ product }) => {
 	const [isReviewOpened, setIsReviewOpened] = useState(false)
+	const [isSuccess, setIsSuccess] = useState(false)
+	const [error, setError] = useState('')
 
 	const {
 		register,
 		control,
 		handleSubmit,
-		formState: { errors }
+		formState: { errors },
+		reset
 	} = useForm<IReviewForm>()
 
-	const onSubmit: SubmitHandler<IReviewForm> = (data) => {
-		console.log('data:---', data)
+	const onSubmit: SubmitHandler<IReviewForm> = async (formData) => {
+		try {
+			const { data } = await axios.post<IReviewSentResponse>(
+				API.review.createDemo,
+				{
+					...formData,
+					productId: product._id
+				}
+			)
+
+			if (data.message) {
+				setIsSuccess(true)
+				reset()
+			} else setError('Что-то пошло не так')
+
+		} catch (error) {
+			setError(error.message)
+		}
 	}
 
 	return (
@@ -242,11 +267,16 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 						</div>
 					</form>
 
-					<div className={styles.success}>
+					{isSuccess && <div className={styles.success}>
 						<div className={styles.success_title}>Ваш отзыв отправлен</div>
 						<div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
-						<CloseIcon className={styles.close} />
-					</div>
+						<CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
+					</div>}
+
+					{error && <div className={styles.error}>
+						Что-то пошло не так, попробуйте обновить страницу
+						<CloseIcon className={styles.close} onClick={() => setError('')} />
+					</div>}
 				</>
 			</Card>
 		</>
