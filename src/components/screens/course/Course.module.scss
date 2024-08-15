@@ -72,6 +72,12 @@
       @apply tw-font-light tw-text-[14px] tw-leading-[19px];
     }
 
+    .review_title {
+      > a {
+        @apply tw-text-primary;
+      }
+    }
+
     .description {
       @apply tw-text-[16px] tw-leading-[24px] tw-mb-[15px];
     }

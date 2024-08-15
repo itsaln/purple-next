@@ -1,6 +1,6 @@
 'use client'
 
-import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from 'react'
+import { DetailedHTMLProps, FC, forwardRef, HTMLAttributes, PropsWithChildren } from 'react'
 import cn from 'clsx'
 
 import styles from './Card.module.scss'
@@ -9,9 +9,10 @@ interface ICard extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDi
 	color?: 'white' | 'blue'
 }
 
-export const Card: FC<PropsWithChildren<ICard>> = ({ color = 'white', className, children, ...props }) => {
+export const Card = forwardRef<HTMLDivElement, ICard>(({ color = 'white', className, children, ...props }, ref) => {
 	return (
 		<div
+			ref={ref}
 			className={cn(styles.card, className, {
 				[styles.white]: color === 'white',
 				[styles.blue]: color === 'blue',
@@ -21,4 +22,6 @@ export const Card: FC<PropsWithChildren<ICard>> = ({ color = 'white', className,
 			{children}
 		</div>
 	)
-}
+})
+
+Card.displayName = 'Card'

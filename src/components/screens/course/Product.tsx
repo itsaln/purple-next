@@ -1,11 +1,14 @@
 'use client'
 
-import { FC, useState } from 'react'
+import { FC, useState, useRef } from 'react'
 import Image from 'next/image'
 import cn from 'clsx'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale/ru'
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
+import axios from 'axios'
+
+import { API } from '@/app/api'
 
 import { declOfNum, priceRu } from '@/helpers/helpers'
 
@@ -25,8 +28,6 @@ import UserIcon from '@/assets/icons/user.svg'
 import CloseIcon from '@/assets/icons/close.svg'
 
 import styles from './Course.module.scss'
-import axios from 'axios'
-import { API } from '@/app/api'
 
 interface IReviewForm {
 	name: string
@@ -43,6 +44,8 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 	const [isReviewOpened, setIsReviewOpened] = useState(false)
 	const [isSuccess, setIsSuccess] = useState(false)
 	const [error, setError] = useState('')
+
+	const reviewRef = useRef<HTMLDivElement>(null)
 
 	const {
 		register,
@@ -70,6 +73,14 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 		} catch (error) {
 			setError(error.message)
 		}
+	}
+
+	const scrollToReview = () => {
+		setIsReviewOpened(true)
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		})
 	}
 
 	return (
@@ -119,8 +130,10 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 				<div className={styles.price_title}>цена</div>
 				<div className={styles.credit_title}>кредит</div>
 				<div className={styles.review_title}>
-					{product.reviewCount}{' '}
-					{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					<a href='#ref' onClick={scrollToReview}>
+						{product.reviewCount}{' '}
+						{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+					</a>
 				</div>
 
 				<Divider className={styles.hr} />
@@ -168,6 +181,7 @@ const Product: FC<{ product: IProductModel }> = ({ product }) => {
 			</Card>
 
 			<Card
+				ref={reviewRef}
 				color='blue'
 				className={cn(styles.reviews, {
 					[styles.opened]: isReviewOpened,
