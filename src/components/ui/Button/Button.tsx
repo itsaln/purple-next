@@ -3,16 +3,16 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, FC, PropsWithChildren } from 'react'
 import cn from 'clsx'
 
-import ArrowIcon from './arrow.svg'
+import ArrowIcon from '@/assets/icons/arrow.svg'
 
 import styles from './Button.module.scss'
 
-interface IButton extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	appearance?: 'primary' | 'ghost'
 	arrow?: 'right' | 'down' | 'none'
 }
 
-export const Button: FC<PropsWithChildren<IButton>> = ({
+export const Button: FC<PropsWithChildren<IButtonProps>> = ({
 	appearance = 'primary',
 	arrow = 'none',
 	className,

@@ -11,7 +11,7 @@ import {
 import { FieldError } from 'react-hook-form'
 import cn from 'clsx'
 
-import StarIcon from './star.svg'
+import StarIcon from '@/assets/icons/star.svg'
 
 import styles from './Rating.module.scss'
 
@@ -22,13 +22,13 @@ interface IFieldProps {
 type TypeRatingPropsField = InputHTMLAttributes<HTMLTextAreaElement> &
 	IFieldProps
 
-interface IRating extends TypeRatingPropsField {
+interface IRatingProps extends TypeRatingPropsField {
 	isEditable?: boolean
 	rating: number
 	setRating?: (rating: number) => void
 }
 
-export const Rating = forwardRef<HTMLDivElement, IRating>(
+export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 	(
 		{ isEditable = false, rating, setRating, error, className, ...props },
 		ref

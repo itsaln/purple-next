@@ -10,7 +10,9 @@ import GlassIcon from '@/assets/icons/glass.svg'
 
 import styles from './Search.module.scss'
 
-export const Search: FC<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>> = ({ className, ...props }) => {
+interface ISearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+
+export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 	const router = useRouter()
 	const [search, setSearch] = useState('')
 

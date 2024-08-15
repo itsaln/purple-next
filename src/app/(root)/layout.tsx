@@ -6,6 +6,7 @@ import { getMenu } from '@/api/menu'
 import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
 import { Header, Sidebar, Footer } from '@/components/layout'
+import { Up } from '@/components/ui'
 
 import '@/assets/scss/global.scss'
 
@@ -37,6 +38,8 @@ export default async function RootLayout({
 					/>
 					<main className={styles.content}>{children}</main>
 					<Footer className={styles.footer} />
+
+					<Up />
 				</div>
 			</body>
 		</html>

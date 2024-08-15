@@ -10,11 +10,11 @@ import CheckIcon from '@/assets/icons/check.svg'
 
 import styles from './Course.module.scss'
 
-interface IAdvantages {
+interface IAdvantagesProps {
 	advantages: ITopPageAdvantage[]
 }
 
-export const Advantages: FC<IAdvantages> = ({ advantages }) => {
+export const Advantages: FC<IAdvantagesProps> = ({ advantages }) => {
 	return (
 		<div className={styles.advantages}>
 			<HTag tag='h2' className={styles.title}>

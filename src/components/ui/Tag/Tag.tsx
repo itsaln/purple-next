@@ -5,13 +5,13 @@ import cn from 'clsx'
 
 import styles from './Tag.module.scss'
 
-interface ITag extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ITagProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	size?: 's' | 'm'
 	color?: 'ghost' | 'red' | 'grey' | 'green' | 'primary'
 	href?: string
 }
 
-export const Tag: FC<PropsWithChildren<ITag>> = ({
+export const Tag: FC<PropsWithChildren<ITagProps>> = ({
 	size = 's',
 	color = 'ghost',
 	href,

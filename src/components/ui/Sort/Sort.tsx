@@ -12,12 +12,12 @@ export enum SortEnum {
 	Price
 }
 
-interface ISort extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ISortProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	sort: SortEnum
 	setSort: (sort: SortEnum) => void
 }
 
-export const Sort: FC<ISort> = ({sort, setSort, className, ...props}) => {
+export const Sort: FC<ISortProps> = ({sort, setSort, className, ...props}) => {
 	return (
 		<div className={cn(styles.sort, className)} {...props}>
 			<span

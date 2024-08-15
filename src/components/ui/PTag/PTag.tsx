@@ -5,11 +5,11 @@ import cn from 'clsx'
 
 import styles from './PTag.module.scss'
 
-interface IPTag extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+interface IPTagProps extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
 	size?: 's' | 'm' | 'l'
 }
 
-export const PTag: FC<PropsWithChildren<IPTag>> = ({
+export const PTag: FC<PropsWithChildren<IPTagProps>> = ({
 	size = 'm',
 	className,
 	children,

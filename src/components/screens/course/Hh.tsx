@@ -15,12 +15,12 @@ import RateIcon from '@/assets/icons/rate.svg'
 
 import styles from './Course.module.scss'
 
-interface IHh {
+interface IHhProps {
 	page: ITopPageModel
 	firstCategory: TopLevelCategoryEnum
 }
 
-export const Hh: FC<IHh> = ({ page, firstCategory }) => {
+export const Hh: FC<IHhProps> = ({ page, firstCategory }) => {
 	return (
 		<div className={styles.hh}>
 			<div className={styles.title}>
