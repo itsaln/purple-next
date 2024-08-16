@@ -32,7 +32,12 @@ export const Up: FC = () => {
 			animate={controls}
 			initial={{ opacity: 0 }}
 		>
-			<ButtonIcon icon='up' appearance='primary' onClick={scrollToTop} />
+			<ButtonIcon
+				title='Up'
+				icon='up'
+				appearance='primary'
+				onClick={scrollToTop}
+			/>
 		</motion.div>
 	)
 }
