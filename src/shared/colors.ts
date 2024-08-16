@@ -3,12 +3,12 @@ export const Colors = {
 	black: '#3B434E',
 	gray: '#A4A4A4',
 	'gray-light': '#EBEBEB',
-	'gray-dark': '#787D85',
+	'gray-dark': '#6C7077',
 	white: '#FFFFFF',
-	primary: '#7653FC',
+	primary: '#7351F5',
 	'primary-hover': '#6344DF',
 	red: '#FC836D',
 	'red-light': '#FEA291',
-	green: '#1DC37E',
+	green: '#007B48',
 	'green-light': '#C8F8E4'
 }
