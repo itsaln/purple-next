@@ -6,7 +6,8 @@ import {
 	useState,
 	KeyboardEvent,
 	forwardRef,
-	HTMLAttributes
+	HTMLAttributes,
+	useRef
 } from 'react'
 import { FieldError } from 'react-hook-form'
 import cn from 'clsx'
@@ -29,15 +30,28 @@ interface IRatingProps extends TypeRatingPropsField {
 
 export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 	(
-		{ isEditable = false, rating, setRating, error, className, ...props },
+		{ isEditable = false, rating, setRating, error, className, tabIndex, ...props },
 		ref
 	) => {
 		const [ratingArray, setRatingArray] = useState<ReactNode[]>(
 			new Array(5).fill(<></>)
 		)
+		const ratingArrayRef = useRef<HTMLSpanElement[]>([])
+
+		const computeFocus = (r: number, i: number) => {
+			if (!isEditable) return -1
+			if (!rating && i === 0) return tabIndex ?? 0
+			if (r === i + 1) return tabIndex ?? 0
+
+			return -1
+		}
+
 		const constructorRating = (currentRating: number) => {
 			const updatedArray = ratingArray.map((r, i) => (
 				<span
+					ref={(r) => ratingArrayRef.current?.push(r)}
+					tabIndex={computeFocus(rating, i)}
+					onKeyDown={handleKey}
 					className={cn(styles.star, {
 						[styles.filled]: i < currentRating,
 						[styles.editable]: isEditable
@@ -46,12 +60,7 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					onMouseLeave={() => changeDisplay(rating)}
 					onClick={() => onClick(i + 1)}
 				>
-					<StarIcon
-						tabIndex={isEditable ? 0 : -1}
-						onKeyDown={(e: KeyboardEvent<SVGElement>) =>
-							isEditable && handleSpace(i + 1, e)
-						}
-					/>
+					<StarIcon />
 				</span>
 			))
 
@@ -70,15 +79,28 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 			setRating(i)
 		}
 
-		const handleSpace = (i: number, e: KeyboardEvent<SVGElement>) => {
-			if (e.code !== 'Space' || !setRating) return
+		const handleKey = (key: KeyboardEvent<HTMLSpanElement>) => {
+			if (!isEditable || !setRating) return
 
-			setRating(i)
+			if (key.code === 'ArrowRight' || key.code === 'ArrowUp') {
+				if (!rating) {
+					setRating(1)
+				} else {
+					key.preventDefault()
+					setRating( rating < 5 ? rating + 1 : 5)
+				}
+				ratingArrayRef.current[rating]?.focus()
+      }
+			if (key.code === 'ArrowLeft' || key.code === 'ArrowDown') {
+				key.preventDefault()
+				setRating( rating > 1 ? rating - 1 : 1)
+				ratingArrayRef.current[rating - 2]?.focus()
+			}
 		}
 
 		useEffect(() => {
 			constructorRating(rating)
-		}, [rating]) // eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [rating, tabIndex]) // eslint-disable-next-line react-hooks/exhaustive-deps
 
 		return (
 			<div

@@ -63,7 +63,9 @@ const Product = motion(
 				handleSubmit,
 				formState: { errors },
 				reset
-			} = useForm<IReviewForm>()
+			} = useForm<IReviewForm>({
+				mode: 'onTouched'
+			})
 
 			const onSubmit: SubmitHandler<IReviewForm> = async (formData) => {
 				try {
@@ -92,6 +94,7 @@ const Product = motion(
 					behavior: 'smooth',
 					block: 'start'
 				})
+				reviewRef.current?.focus()
 			}
 
 			return (
@@ -198,6 +201,7 @@ const Product = motion(
 					>
 						<Card
 							ref={reviewRef}
+							tabIndex={isReviewOpened ? 0 : -1}
 							color='blue'
 							className={styles.product_reviews}
 						>
@@ -242,6 +246,7 @@ const Product = motion(
 										placeholder='Имя'
 										className={styles.form_input}
 										error={errors.name}
+										tabIndex={isReviewOpened ? 0 : -1}
 									/>
 									<Input
 										{...register('title', {
@@ -253,6 +258,7 @@ const Product = motion(
 										placeholder='Заголовок отзыва'
 										className={styles.form_input}
 										error={errors.title}
+										tabIndex={isReviewOpened ? 0 : -1}
 									/>
 									<div className={styles.form_rating}>
 										<span>Оценка:</span>
@@ -272,6 +278,7 @@ const Product = motion(
 													rating={field.value}
 													setRating={field.onChange}
 													error={fieldState.error}
+													tabIndex={isReviewOpened ? 0 : -1}
 												/>
 											)}
 										/>
@@ -286,9 +293,10 @@ const Product = motion(
 										placeholder='Текст отзыва'
 										className={styles.form_description}
 										error={errors.description}
+										tabIndex={isReviewOpened ? 0 : -1}
 									/>
 									<div className={styles.form_submit}>
-										<Button type='submit' appearance='primary'>
+										<Button type='submit' appearance='primary' tabIndex={isReviewOpened ? 0 : -1}>
 											Отправить
 										</Button>
 										<span className='tw-ml-[15px]'>

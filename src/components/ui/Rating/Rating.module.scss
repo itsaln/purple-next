@@ -12,6 +12,8 @@
 }
 
 .star {
+  @apply tw-inline-block;
+
   > svg {
     @apply tw-my-[5px];
   }
