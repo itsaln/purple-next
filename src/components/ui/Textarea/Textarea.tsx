@@ -1,12 +1,18 @@
-import { DetailedHTMLProps, forwardRef, HTMLAttributes, InputHTMLAttributes } from 'react'
+'use client'
+
+import { forwardRef, TextareaHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
 import cn from 'clsx'
 
 import styles from './Textarea.module.scss'
 
-interface ITextareaProps extends DetailedHTMLProps<HTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
+interface IFieldProps {
 	error?: FieldError
 }
+
+type TypeInputPropsField = TextareaHTMLAttributes<HTMLTextAreaElement> & IFieldProps
+
+export interface ITextareaProps extends TypeInputPropsField {}
 
 export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 	({ error, className, ...props }, ref) => {

@@ -1,11 +1,11 @@
 'use client'
 
-import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from 'react'
+import { FC, HTMLAttributes, PropsWithChildren } from 'react'
 import cn from 'clsx'
 
 import styles from './PTag.module.scss'
 
-interface IPTagProps extends DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
+interface IPTagProps extends HTMLAttributes<HTMLParagraphElement> {
 	size?: 's' | 'm' | 'l'
 }
 

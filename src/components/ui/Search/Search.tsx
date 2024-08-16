@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FC, DetailedHTMLProps, HTMLAttributes, useState, KeyboardEvent } from 'react'
+import { FC, HTMLAttributes, useState, KeyboardEvent } from 'react'
 import cn from 'clsx'
 
 import { Button, Input } from '@/components/ui'
@@ -10,7 +10,7 @@ import GlassIcon from '@/assets/icons/glass.svg'
 
 import styles from './Search.module.scss'
 
-interface ISearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+interface ISearchProps extends HTMLAttributes<HTMLDivElement> {}
 
 export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 	const router = useRouter()

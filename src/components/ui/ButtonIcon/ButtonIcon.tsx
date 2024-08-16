@@ -1,6 +1,6 @@
 'use client'
 
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
+import { ButtonHTMLAttributes, FC } from 'react'
 import cn from 'clsx'
 
 import close from './close.svg'
@@ -17,11 +17,7 @@ export const icons = {
 
 export type IconName = keyof typeof icons
 
-interface IButtonProps
-	extends DetailedHTMLProps<
-		ButtonHTMLAttributes<HTMLButtonElement>,
-		HTMLButtonElement
-	> {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	icon: IconName
 	appearance?: 'primary' | 'white'
 }

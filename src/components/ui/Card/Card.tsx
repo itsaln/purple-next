@@ -1,12 +1,11 @@
 'use client'
 
-import { DetailedHTMLProps, forwardRef, HTMLAttributes } from 'react'
+import { forwardRef, HTMLAttributes } from 'react'
 import cn from 'clsx'
 
 import styles from './Card.module.scss'
 
-interface ICardProps
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ICardProps extends HTMLAttributes<HTMLDivElement> {
 	color?: 'white' | 'blue'
 }
 

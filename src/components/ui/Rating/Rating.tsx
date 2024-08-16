@@ -6,7 +6,7 @@ import {
 	useState,
 	KeyboardEvent,
 	forwardRef,
-	InputHTMLAttributes
+	HTMLAttributes
 } from 'react'
 import { FieldError } from 'react-hook-form'
 import cn from 'clsx'
@@ -19,8 +19,7 @@ interface IFieldProps {
 	error?: FieldError
 }
 
-type TypeRatingPropsField = InputHTMLAttributes<HTMLTextAreaElement> &
-	IFieldProps
+type TypeRatingPropsField = HTMLAttributes<HTMLDivElement> & IFieldProps
 
 interface IRatingProps extends TypeRatingPropsField {
 	isEditable?: boolean
@@ -79,7 +78,7 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 
 		useEffect(() => {
 			constructorRating(rating)
-		}, [rating]) // eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [rating])
 
 		return (
 			<div

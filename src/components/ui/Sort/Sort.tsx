@@ -1,6 +1,6 @@
 'use client'
 
-import { DetailedHTMLProps, FC, HTMLAttributes } from 'react'
+import { FC, HTMLAttributes } from 'react'
 import cn from 'clsx'
 
 import SortIcon from '@/assets/icons/sort.svg'
@@ -12,12 +12,17 @@ export enum SortEnum {
 	Price
 }
 
-interface ISortProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ISortProps extends HTMLAttributes<HTMLDivElement> {
 	sort: SortEnum
 	setSort: (sort: SortEnum) => void
 }
 
-export const Sort: FC<ISortProps> = ({sort, setSort, className, ...props}) => {
+export const Sort: FC<ISortProps> = ({
+	sort,
+	setSort,
+	className,
+	...props
+}) => {
 	return (
 		<div className={cn(styles.sort, className)} {...props}>
 			<span

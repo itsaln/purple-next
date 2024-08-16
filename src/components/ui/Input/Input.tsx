@@ -1,21 +1,16 @@
-import {
-	DetailedHTMLProps,
-	forwardRef,
-	HTMLAttributes,
-	InputHTMLAttributes
-} from 'react'
+import { forwardRef, InputHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
 import cn from 'clsx'
 
 import styles from './Input.module.scss'
 
-interface IInputProps
-	extends DetailedHTMLProps<
-		HTMLAttributes<HTMLInputElement>,
-		HTMLInputElement
-	> {
+interface IFieldProps {
 	error?: FieldError
 }
+
+type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps
+
+export interface IInputProps extends TypeInputPropsField {}
 
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
 	({ type = 'text', error, className, ...props }, ref) => {

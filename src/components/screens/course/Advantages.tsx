@@ -1,6 +1,7 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
+import cn from 'clsx'
 
 import { ITopPageAdvantage } from '@/shared/interfaces/page.interface'
 
@@ -10,13 +11,17 @@ import CheckIcon from '@/assets/icons/check.svg'
 
 import styles from './Course.module.scss'
 
-interface IAdvantagesProps {
+interface IAdvantagesProps extends HTMLAttributes<HTMLDivElement> {
 	advantages: ITopPageAdvantage[]
 }
 
-export const Advantages: FC<IAdvantagesProps> = ({ advantages }) => {
+export const Advantages: FC<IAdvantagesProps> = ({
+	advantages,
+	className,
+	...props
+}) => {
 	return (
-		<div className={styles.advantages}>
+		<div className={cn(styles.advantages, className)} {...props}>
 			<HTag tag='h2' className={styles.title}>
 				Преимущества
 			</HTag>

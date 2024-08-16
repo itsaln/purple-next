@@ -1,6 +1,7 @@
 'use client'
 
-import { FC, useEffect, useReducer } from 'react'
+import { FC, HTMLAttributes, useEffect, useReducer } from 'react'
+import cn from 'clsx'
 
 import {
 	ITopPageModel,
@@ -18,13 +19,19 @@ import { Advantages } from './Advantages'
 
 import styles from './Course.module.scss'
 
-interface ICourseProps {
+interface ICourseProps extends HTMLAttributes<HTMLDivElement> {
 	page: ITopPageModel
 	products: IProductModel[]
 	firstCategory: TopLevelCategoryEnum
 }
 
-const Course: FC<ICourseProps> = ({ page, products, firstCategory }) => {
+const Course: FC<ICourseProps> = ({
+	page,
+	products,
+	firstCategory,
+	className,
+	...props
+}) => {
 	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
 		sortReducer,
 		{
@@ -42,7 +49,7 @@ const Course: FC<ICourseProps> = ({ page, products, firstCategory }) => {
 	}, [products])
 
 	return (
-		<div className={styles.course}>
+		<div className={cn(styles.course, className)} {...props}>
 			<div className={styles.products}>
 				<div className={styles.title}>
 					<HTag tag='h1'>{page.title}</HTag>

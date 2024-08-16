@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
 import cn from 'clsx'
 
 import { IMenuItem } from '@/shared/interfaces/menu.interface'
@@ -14,15 +14,19 @@ import { Menu } from './Menu'
 
 import styles from './Sidebar.module.scss'
 
-interface ISidebar {
+interface ISidebarProps extends HTMLAttributes<HTMLDivElement> {
 	menu: IMenuItem[]
 	firstCategory: TopLevelCategoryEnum
-	className?: string
 }
 
-export const Sidebar: FC<ISidebar> = ({ menu, firstCategory, className }) => {
+export const Sidebar: FC<ISidebarProps> = ({
+	menu,
+	firstCategory,
+	className,
+	...props
+}) => {
 	return (
-		<div className={cn(styles.sidebar, className)}>
+		<div className={cn(styles.sidebar, className)} {...props}>
 			<Logo className={styles.logo} />
 			<Search />
 			<Menu menu={menu} firstCategory={firstCategory} />

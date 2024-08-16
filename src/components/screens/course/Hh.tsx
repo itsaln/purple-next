@@ -1,6 +1,7 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
+import cn from 'clsx'
 
 import { priceRu } from '@/helpers/helpers'
 
@@ -15,14 +16,19 @@ import RateIcon from '@/assets/icons/rate.svg'
 
 import styles from './Course.module.scss'
 
-interface IHhProps {
+interface IHhProps extends HTMLAttributes<HTMLDivElement> {
 	page: ITopPageModel
 	firstCategory: TopLevelCategoryEnum
 }
 
-export const Hh: FC<IHhProps> = ({ page, firstCategory }) => {
+export const Hh: FC<IHhProps> = ({
+	page,
+	firstCategory,
+	className,
+	...props
+}) => {
 	return (
-		<div className={styles.hh}>
+		<div className={cn(styles.hh, className)} {...props}>
 			<div className={styles.title}>
 				<HTag tag='h2'>Вакансии - {page.category}</HTag>
 				<Tag color='red' size='m'>

@@ -1,22 +1,13 @@
 'use client'
 
-import {
-	ButtonHTMLAttributes,
-	DetailedHTMLProps,
-	FC,
-	PropsWithChildren
-} from 'react'
+import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
 import cn from 'clsx'
 
 import ArrowIcon from '@/assets/icons/arrow.svg'
 
 import styles from './Button.module.scss'
 
-export interface IButtonProps
-	extends DetailedHTMLProps<
-		ButtonHTMLAttributes<HTMLButtonElement>,
-		HTMLButtonElement
-	> {
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	appearance: 'primary' | 'ghost'
 	arrow?: 'right' | 'down' | 'none'
 }

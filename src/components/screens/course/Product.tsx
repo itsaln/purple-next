@@ -1,11 +1,4 @@
-import {
-	useState,
-	useRef,
-	forwardRef,
-	Fragment,
-	DetailedHTMLProps,
-	HTMLAttributes
-} from 'react'
+import { useState, useRef, forwardRef, HTMLAttributes } from 'react'
 import Image from 'next/image'
 import cn from 'clsx'
 import axios from 'axios'
@@ -46,8 +39,7 @@ interface IReviewSentResponse {
 	message: string
 }
 
-interface IProductProps
-	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface IProductProps extends HTMLAttributes<HTMLDivElement> {
 	product: IProductModel
 }
 
@@ -76,7 +68,7 @@ const Product = motion(
 			const onSubmit: SubmitHandler<IReviewForm> = async (formData) => {
 				try {
 					const { data } = await axios.post<IReviewSentResponse>(
-						API.review.createDemo,
+						API.review.createDemo + '/asd',
 						{
 							...formData,
 							productId: product._id
@@ -87,7 +79,9 @@ const Product = motion(
 						setIsSuccess(true)
 						reset()
 					} else setError('Что-то пошло не так')
-				} catch (error) {
+
+					// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+				} catch (error: any) {
 					setError(error.message)
 				}
 			}

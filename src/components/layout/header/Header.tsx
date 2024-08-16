@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useState } from 'react'
+import { FC, HTMLAttributes, useEffect, useState } from 'react'
 import cn from 'clsx'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -15,16 +15,16 @@ import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
 import styles from './Header.module.scss'
 
-interface IHeaderProps {
+interface IHeaderProps extends HTMLAttributes<HTMLDivElement> {
 	menu: IMenuItem[]
 	firstCategory: TopLevelCategoryEnum
-	className?: string
 }
 
 export const Header: FC<IHeaderProps> = ({
 	menu,
 	firstCategory,
-	className
+	className,
+	...props
 }) => {
 	const pathname = usePathname()
 
@@ -49,7 +49,7 @@ export const Header: FC<IHeaderProps> = ({
 	}, [pathname])
 
 	return (
-		<header className={cn(styles.header, className)}>
+		<header className={cn(styles.header, className)} {...props}>
 			<Logo />
 			<ButtonIcon
 				appearance='white'

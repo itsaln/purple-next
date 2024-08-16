@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FC, useState } from 'react'
+import { FC, HTMLAttributes, useState } from 'react'
 import cn from 'clsx'
 import { motion } from 'framer-motion'
 
@@ -15,12 +15,17 @@ import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
 import styles from './Sidebar.module.scss'
 
-interface IMenu {
+interface IMenuProps extends HTMLAttributes<HTMLDivElement> {
 	menu: IMenuItem[]
 	firstCategory: TopLevelCategoryEnum
 }
 
-export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
+export const Menu: FC<IMenuProps> = ({
+	menu,
+	firstCategory,
+	className,
+	...props
+}) => {
 	const pathname = usePathname()
 
 	const variants = {
@@ -128,5 +133,9 @@ export const Menu: FC<IMenu> = ({ menu, firstCategory }) => {
 		))
 	}
 
-	return <div className={styles.menu}>{buildFirstLevel()}</div>
+	return (
+		<div className={cn(styles.menu, className)} {...props}>
+			{buildFirstLevel()}
+		</div>
+	)
 }

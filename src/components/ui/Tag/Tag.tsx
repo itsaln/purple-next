@@ -1,11 +1,11 @@
 'use client'
 
-import { DetailedHTMLProps, FC, HTMLAttributes, PropsWithChildren } from 'react'
+import { FC, HTMLAttributes, PropsWithChildren } from 'react'
 import cn from 'clsx'
 
 import styles from './Tag.module.scss'
 
-interface ITagProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+interface ITagProps extends HTMLAttributes<HTMLDivElement> {
 	size?: 's' | 'm'
 	color?: 'ghost' | 'red' | 'grey' | 'green' | 'primary'
 	href?: string
