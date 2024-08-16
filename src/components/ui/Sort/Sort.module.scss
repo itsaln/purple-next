@@ -2,8 +2,8 @@
   @apply tw-grid tw-gap-[40px];
   grid-template-columns: auto auto;
 
-  > span {
-    @apply tw-grid tw-gap-[8px] tw-items-center tw-cursor-pointer;
+  > button {
+    @apply tw-grid tw-gap-[8px] tw-items-center tw-text-[16px] tw-leading-[22px] tw-cursor-pointer;
     grid-template-columns: 20px 1fr;
 
     &.active {

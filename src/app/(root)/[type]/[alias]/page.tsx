@@ -10,7 +10,8 @@ import { firstLevelMenu } from '@/helpers/helpers'
 import Course from '@/screens/course/Course'
 
 export const metadata: Metadata = {
-	title: 'Course page'
+	title: 'Course page',
+	description: 'Course page description'
 }
 
 interface ICoursePage {

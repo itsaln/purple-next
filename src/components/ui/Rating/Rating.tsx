@@ -49,7 +49,8 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 		const constructorRating = (currentRating: number) => {
 			const updatedArray = ratingArray.map((r, i) => (
 				<span
-					ref={(r) => ratingArrayRef.current?.push(r)}
+					// @ts-ignore
+					ref={(r) => ratingArrayRef.current?.push(r as HTMLSpanElement)}
 					tabIndex={computeFocus(rating, i)}
 					onKeyDown={handleKey}
 					className={cn(styles.star, {

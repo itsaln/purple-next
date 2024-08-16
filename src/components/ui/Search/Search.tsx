@@ -34,7 +34,7 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 				onKeyDown={handleKeyDown}
 			/>
 			<Button
-				title='Search'
+				aria-label='Поиск'
 				appearance='primary'
 				className={styles.button}
 				onClick={goToSearch}

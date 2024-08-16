@@ -41,7 +41,8 @@ export const MainLayout: FC<PropsWithChildren<IMainLayout>> = ({
 	return (
 		<div className={cn(styles.main_layout, className)} {...props}>
 			<a
-				tabIndex={1}
+				href='#'
+				tabIndex={0}
 				className={cn(styles.skip_link, {
 					[styles.displayed]: isSkipLinkDisplayed
 				})}

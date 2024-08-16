@@ -33,7 +33,7 @@ export const Up: FC = () => {
 			initial={{ opacity: 0 }}
 		>
 			<ButtonIcon
-				title='Up'
+				aria-label='Вверх'
 				icon='up'
 				appearance='primary'
 				onClick={scrollToTop}

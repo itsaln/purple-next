@@ -145,7 +145,7 @@ const Product = motion(
 						<div className={styles.price_title}>цена</div>
 						<div className={styles.credit_title}>кредит</div>
 						<div className={styles.review_title}>
-							<a href='#ref' onClick={scrollToReview}>
+							<a href='#reviews' onClick={scrollToReview}>
 								{product.reviewCount}{' '}
 								{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
 							</a>

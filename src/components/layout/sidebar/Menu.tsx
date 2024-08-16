@@ -144,8 +144,8 @@ export const Menu: FC<IMenuProps> = ({
 	}
 
 	return (
-		<div className={cn(styles.menu, className)} {...props}>
+		<nav className={cn(styles.menu, className)} {...props}>
 			{buildFirstLevel()}
-		</div>
+		</nav>
 	)
 }

@@ -25,23 +25,25 @@ export const Sort: FC<ISortProps> = ({
 }) => {
 	return (
 		<div className={cn(styles.sort, className)} {...props}>
-			<span
+			<button
+				type='button'
 				className={cn({
 					[styles.active]: sort === SortEnum.Rating
 				})}
 				onClick={() => setSort(SortEnum.Rating)}
 			>
 				<SortIcon className={styles.sort_icon} /> По рейтингу
-			</span>
+			</button>
 
-			<span
+			<button
+				type='button'
 				className={cn({
 					[styles.active]: sort === SortEnum.Price
 				})}
 				onClick={() => setSort(SortEnum.Price)}
 			>
 				<SortIcon className={styles.sort_icon} /> По цене
-			</span>
+			</button>
 		</div>
 	)
 }
