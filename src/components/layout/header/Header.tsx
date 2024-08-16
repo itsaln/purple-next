@@ -52,6 +52,7 @@ export const Header: FC<IHeaderProps> = ({
 		<header className={cn(styles.header, className)} {...props}>
 			<Logo />
 			<ButtonIcon
+				title='Menu'
 				appearance='white'
 				icon='menu'
 				onClick={() => setIsOpened(true)}
@@ -68,6 +69,7 @@ export const Header: FC<IHeaderProps> = ({
 					className={styles.sidebar}
 				/>
 				<ButtonIcon
+					title='Close'
 					appearance='white'
 					icon='close'
 					className={styles.close}

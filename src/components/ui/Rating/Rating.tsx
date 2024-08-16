@@ -78,7 +78,7 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 
 		useEffect(() => {
 			constructorRating(rating)
-		}, [rating])
+		}, [rating]) // eslint-disable-next-line react-hooks/exhaustive-deps
 
 		return (
 			<div

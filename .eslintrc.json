@@ -6,11 +6,8 @@
   ],
   "rules": {
     "semi": "off",
-//    "@typescript-eslint/semi": [
-//      "warn"
-//    ],
     "@typescript-eslint/no-empty-object-type": [
-      "warn"
+      "off"
     ],
     "@typescript-eslint/no-empty-interface": [
       "error",
