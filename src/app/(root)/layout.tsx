@@ -5,12 +5,9 @@ import { getMenu } from '@/api/menu'
 
 import { TopLevelCategoryEnum } from '@/shared/interfaces/page.interface'
 
-import { Header, Sidebar, Footer } from '@/components/layout'
-import { Up } from '@/components/ui'
-
 import '@/assets/scss/global.scss'
 
-import styles from './Layout.module.scss'
+import { MainLayout } from '@/components/layout'
 
 const notoSans = Noto_Sans({
 	display: 'swap',
@@ -28,21 +25,9 @@ export default async function RootLayout({
 
 	return (
 		<html lang='ru'>
-			<body className={notoSans.className}>
-				<div className={styles.layout}>
-					<Header className={styles.header} menu={menu}
-									firstCategory={firstCategory} />
-					<Sidebar
-						className={styles.sidebar}
-						menu={menu}
-						firstCategory={firstCategory}
-					/>
-					<main className={styles.content}>{children}</main>
-					<Footer className={styles.footer} />
-
-					<Up />
-				</div>
-			</body>
+		<body className={notoSans.className}>
+		<MainLayout menu={menu} firstCategory={firstCategory}>{children}</MainLayout>
+		</body>
 		</html>
 	)
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FC, HTMLAttributes, useState } from 'react'
+import { FC, HTMLAttributes, useState, KeyboardEvent } from 'react'
 import cn from 'clsx'
 import { motion } from 'framer-motion'
 
@@ -64,6 +64,13 @@ export const Menu: FC<IMenuProps> = ({
 		)
 	}
 
+	const openSecondLevelKey = (key: KeyboardEvent<HTMLDivElement>, secondaryCategory: string) => {
+		if (key.code === 'Space' || key.code === 'Enter') {
+			key.preventDefault()
+			openSecondLevel(secondaryCategory)
+		}
+	}
+
 	const buildFirstLevel = () => {
 		return (
 			<>
@@ -97,6 +104,8 @@ export const Menu: FC<IMenuProps> = ({
 					return (
 						<div key={`${m._id.secondCategory}_${i}`}>
 							<div
+								tabIndex={0}
+								onKeyDown={(key: KeyboardEvent<HTMLDivElement>) => openSecondLevelKey(key, m._id.secondCategory)}
 								className={styles.second_level}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
 							>
@@ -109,7 +118,7 @@ export const Menu: FC<IMenuProps> = ({
 								animate={m.isOpened ? 'visible' : 'hidden'}
 								className={cn(styles.second_level_block)}
 							>
-								{buildThirdLevel(m.pages, menuItem.route)}
+								{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
 							</motion.div>
 						</div>
 					)
@@ -118,10 +127,11 @@ export const Menu: FC<IMenuProps> = ({
 		)
 	}
 
-	const buildThirdLevel = (pages: IPageItem[], route: string) => {
+	const buildThirdLevel = (pages: IPageItem[], route: string, isOpened: boolean) => {
 		return pages.map((p, i) => (
 			<motion.div key={`${p._id}_${i}`} variants={variantsChildren}>
 				<Link
+					tabIndex={isOpened ? 0 : -1}
 					href={`/${route}/${p.alias}`}
 					className={cn(styles.third_level, {
 						[styles.active]: `/${route}/${p.alias}` === pathname
