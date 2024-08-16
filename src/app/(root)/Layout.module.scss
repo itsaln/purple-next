@@ -8,7 +8,6 @@
     "footer footer footer footer";
 
   .header {
-    @apply tw-hidden;
     grid-area: header;
   }
 
@@ -25,9 +24,10 @@
   }
 }
 
-@media (max-width: 765px) {
+@media screen and (max-width: 765px) {
 
   .layout {
+    @apply tw-gap-[10px];
     grid-template-columns: minmax(320px, 1fr);
     grid-template-areas:
       "header"
@@ -40,10 +40,6 @@
 
     .content {
       @apply tw-p-[15px];
-    }
-
-    .header {
-      @apply tw-block;
     }
   }
 

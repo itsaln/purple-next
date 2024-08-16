@@ -15,12 +15,14 @@ interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButton
 export const Button: FC<PropsWithChildren<IButtonProps>> = ({
 	appearance = 'primary',
 	arrow = 'none',
+	type,
 	className,
 	children,
 	...props
 }) => {
 	return (
 		<button
+			type={type || 'button'}
 			className={cn(styles.button, className, {
 				[styles.primary]: appearance === 'primary',
 				[styles.ghost]: appearance === 'ghost'

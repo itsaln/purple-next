@@ -1,3 +1,22 @@
 .header {
-  @apply tw-block;
+  @apply tw-bg-background tw-hidden tw-gap-[10px] tw-p-[15px];
+  grid-template-columns: 1fr 40px;
+
+  .menu {
+    @apply tw-fixed tw-bg-background tw-top-0 tw-right-0 tw-bottom-0 tw-left-0 tw-overflow-y-auto tw-py-[20px] tw-px-[10px] tw-z-3;
+  }
+
+  .sidebar {}
+
+  .close {
+    @apply tw-fixed tw-z-3 tw-top-[15px] tw-right-[15px];
+  }
+}
+
+@media screen and (max-width: 765px) {
+
+  .header {
+    @apply tw-grid;
+  }
+
 }

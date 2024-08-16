@@ -30,11 +30,12 @@ export default async function RootLayout({
 		<html lang='ru'>
 			<body className={notoSans.className}>
 				<div className={styles.layout}>
-					<Header className={styles.header} />
+					<Header className={styles.header} menu={menu}
+									firstCategory={firstCategory} />
 					<Sidebar
+						className={styles.sidebar}
 						menu={menu}
 						firstCategory={firstCategory}
-						className={styles.sidebar}
 					/>
 					<main className={styles.content}>{children}</main>
 					<Footer className={styles.footer} />

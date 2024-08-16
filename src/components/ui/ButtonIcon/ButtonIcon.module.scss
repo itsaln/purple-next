@@ -1,0 +1,33 @@
+.button_icon {
+  @apply tw-rounded-[10px] tw-border-none tw-w-[40px] tw-h-[40px] tw-cursor-pointer tw-p-[10px];
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .05);
+  transition: all 0.2s;
+
+  &.primary {
+    @apply tw-bg-primary;
+
+    &:hover {
+      @apply tw-bg-primary-hover;
+    }
+
+    svg * {
+      @apply tw-fill-white;
+    }
+  }
+
+  &.white {
+    @apply tw-bg-white;
+
+    &:hover {
+      @apply tw-bg-primary;
+
+      svg * {
+        @apply tw-fill-white;
+      }
+    }
+
+    svg * {
+      @apply tw-fill-primary;
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { motion, useAnimation } from 'framer-motion'
 
 import { useScrollY } from '@/hooks/useScrollY'
 
-import UpIcon from '@/assets/icons/up.svg'
+import { ButtonIcon } from '@/components/ui'
 
 import styles from './Up.module.scss'
 
@@ -21,20 +21,18 @@ export const Up: FC = () => {
 	}
 
 	useEffect(() => {
-		const ignore = controls.start({
+		controls.start({
 			opacity: scrollY / document.body.scrollHeight
 		})
 	}, [scrollY, controls])
 
 	return (
-		<motion.button
-			type='button'
+		<motion.div
 			className={styles.up}
-			onClick={scrollToTop}
 			animate={controls}
 			initial={{ opacity: 0 }}
 		>
-			<UpIcon />
-		</motion.button>
+			<ButtonIcon icon='up' appearance='primary' onClick={scrollToTop} />
+		</motion.div>
 	)
 }
