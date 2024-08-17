@@ -10,7 +10,7 @@ import GlassIcon from '@/assets/icons/glass.svg'
 
 import styles from './Search.module.scss'
 
-interface ISearchProps extends HTMLAttributes<HTMLDivElement> {}
+interface ISearchProps extends HTMLAttributes<HTMLFormElement> {}
 
 export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 	const router = useRouter()
@@ -25,7 +25,7 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 	}
 
 	return (
-		<div className={cn(styles.search, className)} {...props}>
+		<form className={cn(styles.search, className)} {...props} role='search'>
 			<Input
 				className={styles.input}
 				placeholder='Поиск...'
@@ -41,6 +41,6 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 			>
 				<GlassIcon />
 			</Button>
-		</div>
+		</form>
 	)
 }

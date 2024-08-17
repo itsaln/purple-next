@@ -95,7 +95,7 @@ export const Menu: FC<IMenuProps> = ({
 
 	const buildSecondLevel = (menuItem: IFirstLevelMenuItem) => {
 		return (
-			<div className={styles.second_block}>
+			<nav className={styles.second_block}>
 				{menuState.map((m, i) => {
 					if (m.pages.map((p) => p.alias).includes(pathname.split('/')[2])) {
 						m.isOpened = true
@@ -123,7 +123,7 @@ export const Menu: FC<IMenuProps> = ({
 						</div>
 					)
 				})}
-			</div>
+			</nav>
 		)
 	}
 
@@ -144,7 +144,7 @@ export const Menu: FC<IMenuProps> = ({
 	}
 
 	return (
-		<nav className={cn(styles.menu, className)} {...props}>
+		<nav className={cn(styles.menu, className)} {...props} role='navigation'>
 			{buildFirstLevel()}
 		</nav>
 	)

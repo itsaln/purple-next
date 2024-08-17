@@ -64,6 +64,7 @@ export const MainLayout: FC<PropsWithChildren<IMainLayout>> = ({
 				ref={mainRef}
 				tabIndex={0}
 				className={styles.content}
+				role='main'
 			>{children}</main>
 			<Footer className={styles.footer} />
 
