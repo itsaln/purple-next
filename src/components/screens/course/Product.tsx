@@ -116,19 +116,21 @@ const Product = motion(
 						<div className={styles.title}>{product.title}</div>
 
 						<div className={styles.price}>
-							{priceRu(product.price)}
+							<span><span className='tw-visually-hidden'>Цена</span>{priceRu(product.price)}</span>
 							{product.oldPrice && (
 								<Tag color='green' className='tw-ml-[5px]'>
+									<span className='tw-visually-hidden'>Скидка</span>
 									{priceRu(product.price - product.oldPrice)}
 								</Tag>
 							)}
 						</div>
 
 						<div className={styles.credit}>
-							{priceRu(product.credit)}/
-							<span className={styles.month}>мес</span>
+							<span className='tw-visually-hidden'>Кредит</span>
+							{priceRu(product.credit)}/<span className={styles.month}>мес</span>
 						</div>
 
+						<span className='tw-visually-hidden'>{'Рейтинг' + Math.ceil(product.reviewAvg ?? product.initialRating)}</span>
 						<Rating
 							className={styles.rating}
 							rating={product.reviewAvg ?? product.initialRating}
@@ -142,8 +144,8 @@ const Product = motion(
 							))}
 						</div>
 
-						<div className={styles.price_title}>цена</div>
-						<div className={styles.credit_title}>кредит</div>
+						<div className={styles.price_title} aria-hidden={true}>цена</div>
+						<div className={styles.credit_title} aria-hidden={true}>кредит</div>
 						<div className={styles.review_title}>
 							<a href='#reviews' onClick={scrollToReview}>
 								{product.reviewCount}{' '}

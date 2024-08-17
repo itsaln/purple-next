@@ -6,7 +6,7 @@ import { Colors } from './src/shared/colors'
 
 const colors = {
 	...Colors,
-	transparent: twColors.transparent,
+	transparent: twColors.transparent
 }
 
 const config: Config = {
@@ -84,6 +84,12 @@ const config: Config = {
 					textOverflow: 'ellipsis',
 					overflow: 'hidden'
 				},
+				'.visually-hidden': {
+					position: 'absolute',
+					width: 0,
+					height: 0,
+					overflow: 'hidden'
+				}
 			})
 			addUtilities({
 				'.transition-colors': {
