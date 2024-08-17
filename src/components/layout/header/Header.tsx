@@ -3,7 +3,7 @@
 import { FC, HTMLAttributes, useEffect, useState } from 'react'
 import cn from 'clsx'
 import { usePathname } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 import { Sidebar } from '@/components/layout'
 import { ButtonIcon } from '@/components/ui'
@@ -27,6 +27,7 @@ export const Header: FC<IHeaderProps> = ({
 	...props
 }) => {
 	const pathname = usePathname()
+	const shouldReduceMotion = useReducedMotion()
 
 	const [isOpened, setIsOpened] = useState(false)
 
@@ -39,7 +40,7 @@ export const Header: FC<IHeaderProps> = ({
 			}
 		},
 		closed: {
-			opacity: 0,
+			opacity: shouldReduceMotion ? 1 : 0,
 			x: '100%'
 		}
 	}

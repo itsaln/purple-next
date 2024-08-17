@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FC, HTMLAttributes, useState, KeyboardEvent } from 'react'
 import cn from 'clsx'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 import { firstLevelMenu } from '@/helpers/helpers'
 
@@ -27,11 +27,14 @@ export const Menu: FC<IMenuProps> = ({
 	...props
 }) => {
 	const pathname = usePathname()
+	const shouldReduceMotion = useReducedMotion()
+
+	const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>(undefined)
 
 	const variants = {
 		visible: {
 			// marginBottom: 20,
-			transition: {
+			transition: shouldReduceMotion ? {} : {
 				when: 'beforeChildren',
 				staggerChildren: 0.1
 			}
@@ -47,7 +50,7 @@ export const Menu: FC<IMenuProps> = ({
 			height: 29
 		},
 		hidden: {
-			opacity: 0,
+			opacity: shouldReduceMotion ? 1 : 0,
 			height: 0
 		}
 	}
@@ -57,7 +60,10 @@ export const Menu: FC<IMenuProps> = ({
 	const openSecondLevel = (secondCategory: string) => {
 		setMenuState(
 			menuState.map((m) => {
-				if (m._id.secondCategory === secondCategory) m.isOpened = !m.isOpened
+				if (m._id.secondCategory === secondCategory) {
+					setAnnounce(m.isOpened ? 'closed' : 'opened')
+					m.isOpened = !m.isOpened
+				}
 
 				return m
 			})
@@ -73,9 +79,9 @@ export const Menu: FC<IMenuProps> = ({
 
 	const buildFirstLevel = () => {
 		return (
-			<>
+			<ul>
 				{firstLevelMenu.map((m, index) => (
-					<div key={`${m.id}_${index}`}>
+					<li key={`${m.id}_${index}`} aria-expanded={m.id === firstCategory}>
 						<Link href={`/${m.route}`}>
 							<div
 								className={cn(styles.first_level, {
@@ -87,31 +93,32 @@ export const Menu: FC<IMenuProps> = ({
 							</div>
 						</Link>
 						{m.id === firstCategory && buildSecondLevel(m)}
-					</div>
+					</li>
 				))}
-			</>
+			</ul>
 		)
 	}
 
 	const buildSecondLevel = (menuItem: IFirstLevelMenuItem) => {
 		return (
-			<nav className={styles.second_block}>
+			<ul className={styles.second_block}>
 				{menuState.map((m, i) => {
 					if (m.pages.map((p) => p.alias).includes(pathname.split('/')[2])) {
 						m.isOpened = true
 					}
 
 					return (
-						<div key={`${m._id.secondCategory}_${i}`}>
-							<div
-								tabIndex={0}
+						<li key={`${m._id.secondCategory}_${i}`}>
+							<button
+								type='button'
 								onKeyDown={(key: KeyboardEvent<HTMLDivElement>) => openSecondLevelKey(key, m._id.secondCategory)}
 								className={styles.second_level}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
+								aria-expanded={m.isOpened}
 							>
 								{m._id.secondCategory}
-							</div>
-							<motion.div
+							</button>
+							<motion.ul
 								layout
 								variants={variants}
 								initial={m.isOpened ? 'visible' : 'hidden'}
@@ -119,32 +126,34 @@ export const Menu: FC<IMenuProps> = ({
 								className={cn(styles.second_level_block)}
 							>
 								{buildThirdLevel(m.pages, menuItem.route, m.isOpened ?? false)}
-							</motion.div>
-						</div>
+							</motion.ul>
+						</li>
 					)
 				})}
-			</nav>
+			</ul>
 		)
 	}
 
 	const buildThirdLevel = (pages: IPageItem[], route: string, isOpened: boolean) => {
 		return pages.map((p, i) => (
-			<motion.div key={`${p._id}_${i}`} variants={variantsChildren}>
+			<motion.li key={`${p._id}_${i}`} variants={variantsChildren}>
 				<Link
 					tabIndex={isOpened ? 0 : -1}
 					href={`/${route}/${p.alias}`}
 					className={cn(styles.third_level, {
 						[styles.active]: `/${route}/${p.alias}` === pathname
 					})}
+					aria-current={`/${route}/${p.alias}` === pathname ? 'page' : false}
 				>
 					{p.category}
 				</Link>
-			</motion.div>
+			</motion.li>
 		))
 	}
 
 	return (
 		<nav className={cn(styles.menu, className)} {...props} role='navigation'>
+			{announce && <span role='log' className='tw-visually-hidden'>{announce === 'opened' ? 'Развёрнуто' : 'Свёрнуто'}</span>}
 			{buildFirstLevel()}
 		</nav>
 	)

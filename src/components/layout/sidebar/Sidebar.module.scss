@@ -23,18 +23,10 @@
     @apply tw-border-l tw-border-solid tw-border-[#DFDFDF] tw-mt-[15px] tw-ml-[12px] tw-pl-[32px];
 
     .second_level {
-      @apply tw-font-light tw-text-[12px] tw-text-gray-dark tw-uppercase tw-cursor-pointer tw-mb-[10px];
+      @apply tw-font-light tw-text-[12px] tw-text-gray-dark tw-uppercase tw-mb-[10px];
     }
     .second_level_block {
       @apply tw-overflow-hidden;
-
-      //&.opened {
-      //  @apply tw-block;
-      //
-      //  &:last-child {
-      //    @apply tw-mb-[20px];
-      //  }
-      //}
     }
   }
 

@@ -2,6 +2,7 @@
 
 import { FC, HTMLAttributes, useEffect, useReducer } from 'react'
 import cn from 'clsx'
+import { useReducedMotion } from 'framer-motion'
 
 import {
 	ITopPageModel,
@@ -40,6 +41,8 @@ const Course: FC<ICourseProps> = ({
 		}
 	)
 
+	const shouldReduceMotion = useReducedMotion()
+
 	const setSort = (sort: SortEnum) => {
 		dispatchSort({ type: sort })
 	}
@@ -63,12 +66,13 @@ const Course: FC<ICourseProps> = ({
 				</div>
 
 				{sortedProducts && (
-					<div className={styles.list}>
+					<div role='list' className={styles.list}>
 						{sortedProducts.map((product, index) => (
 							<Product
+								role='listitem'
 								key={`${product._id}_${index}`}
 								product={product}
-								layout
+								layout={!shouldReduceMotion}
 							/>
 						))}
 					</div>
