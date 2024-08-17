@@ -7,12 +7,65 @@ import { firstLevelMenu } from '@/helpers/helpers'
 
 import Modules from '@/screens/modules/Modules'
 
-export const metadata: Metadata = {
-	title: 'Modules page'
+enum ModulesPagesEnum {
+	Courses = 'courses',
+	Services = 'services',
+	Books = 'books',
+	Products = 'products'
 }
 
 interface IModulesPage {
-	params: { type: string }
+	params: { type: ModulesPagesEnum }
+}
+
+export async function generateMetadata({ params }: IModulesPage): Promise<Metadata> {
+	switch (params.type) {
+		case 'courses':
+      return {
+      	title: 'Курсы',
+				description: 'Курсы - purpleschool.ru',
+				openGraph: {
+      		title: 'Курсы',
+					description: 'Курсы - purpleschool.ru'
+				}
+      }
+    case 'services':
+      return {
+      	title: 'Сервисы',
+				description: 'Сервисы - purpleschool.ru',
+				openGraph: {
+					title: 'Сервисы',
+					description: 'Сервисы - purpleschool.ru'
+				}
+      }
+		case 'books':
+			return {
+				title: 'Книги',
+				description: 'Книги - purpleschool.ru',
+				openGraph: {
+          title: 'Книги',
+          description: 'Книги - purpleschool.ru'
+        }
+			}
+		case 'products':
+			return {
+				title: 'Продукты',
+				description: 'Продукты - purpleschool.ru',
+				openGraph: {
+          title: 'Продукты',
+          description: 'Продукты - purpleschool.ru'
+        }
+			}
+    default:
+      return {
+				title: 'Modules page',
+				description: 'Modules page description',
+				openGraph: {
+          title: 'Modules page',
+          description: 'Modules page description'
+        }
+			}
+	}
 }
 
 export async function generateStaticParams() {

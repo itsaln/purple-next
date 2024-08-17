@@ -60,7 +60,7 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					onMouseEnter={() => changeDisplay(i + 1)}
 					onMouseLeave={() => changeDisplay(rating)}
 					onClick={() => onClick(i + 1)}
-					role={isEditable ? 'slider' : ''}
+					role={isEditable ? 'slider' : undefined}
 					aria-valuenow={rating}
 					aria-valuemax={5}
 					aria-valuemin={1}

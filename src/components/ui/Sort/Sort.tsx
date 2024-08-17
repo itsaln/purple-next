@@ -33,6 +33,7 @@ export const Sort: FC<ISortProps> = ({
 					[styles.active]: sort === SortEnum.Rating
 				})}
 				onClick={() => setSort(SortEnum.Rating)}
+				aria-label='По рейтингу'
 				aria-selected={sort === SortEnum.Rating}
 				aria-labelledby='sort rating'
 			>
@@ -46,6 +47,7 @@ export const Sort: FC<ISortProps> = ({
 					[styles.active]: sort === SortEnum.Price
 				})}
 				onClick={() => setSort(SortEnum.Price)}
+				aria-label='По цене'
 				aria-selected={sort === SortEnum.Price}
 				aria-labelledby='sort price'
 			>

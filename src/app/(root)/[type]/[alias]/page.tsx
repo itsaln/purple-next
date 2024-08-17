@@ -9,13 +9,21 @@ import { firstLevelMenu } from '@/helpers/helpers'
 
 import Course from '@/screens/course/Course'
 
-export const metadata: Metadata = {
-	title: 'Course page',
-	description: 'Course page description'
-}
-
 interface ICoursePage {
 	params: { alias: string; type: string }
+}
+
+export async function generateMetadata({ params }: ICoursePage): Promise<Metadata> {
+	const page = await getPage(params.alias)
+
+	return {
+		title: page.title,
+		description: page.metaDescription,
+		openGraph: {
+			title: page.title,
+			description: page.metaDescription
+		}
+	}
 }
 
 export async function generateStaticParams() {
