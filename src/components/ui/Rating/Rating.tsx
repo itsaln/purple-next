@@ -60,6 +60,12 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					onMouseEnter={() => changeDisplay(i + 1)}
 					onMouseLeave={() => changeDisplay(rating)}
 					onClick={() => onClick(i + 1)}
+					role={isEditable ? 'slider' : ''}
+					aria-valuenow={rating}
+					aria-valuemax={5}
+					aria-valuemin={1}
+					aria-label={isEditable ? 'Укажите рейтинг стрелками вверх или вниз': ('рейтинг' + rating)}
+					aria-invalid={!!error}
 				>
 					<StarIcon />
 				</span>
@@ -115,7 +121,7 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					<span key={`${r}_${i}`}>{r}</span>
 				))}
 
-				{error && <span className={styles.error}>{error.message}</span>}
+				{error && <span className={styles.error} role='alert'>{error.message}</span>}
 			</div>
 		)
 	}

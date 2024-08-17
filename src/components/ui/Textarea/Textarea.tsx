@@ -26,7 +26,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 					{...props}
 				/>
 
-				{error && <span className={styles.error}>{error.message}</span>}
+				{error && <span className={styles.error} role='alert'>{error.message}</span>}
 			</div>
 		)
 	}

@@ -62,7 +62,8 @@ const Product = motion(
 				control,
 				handleSubmit,
 				formState: { errors },
-				reset
+				reset,
+				clearErrors
 			} = useForm<IReviewForm>({
 				mode: 'onTouched'
 			})
@@ -190,6 +191,7 @@ const Product = motion(
 								appearance='ghost'
 								arrow={isReviewOpened ? 'down' : 'right'}
 								onClick={() => setIsReviewOpened(!isReviewOpened)}
+								aria-expanded={isReviewOpened}
 							>
 								Читать отзывы
 							</Button>
@@ -249,6 +251,7 @@ const Product = motion(
 										className={styles.form_input}
 										error={errors.name}
 										tabIndex={isReviewOpened ? 0 : -1}
+										aria-invalid={errors.name ? true : false}
 									/>
 									<Input
 										{...register('title', {
@@ -261,6 +264,7 @@ const Product = motion(
 										className={styles.form_input}
 										error={errors.title}
 										tabIndex={isReviewOpened ? 0 : -1}
+										aria-invalid={errors.title ? true : false}
 									/>
 									<div className={styles.form_rating}>
 										<span>Оценка:</span>
@@ -281,6 +285,7 @@ const Product = motion(
 													setRating={field.onChange}
 													error={fieldState.error}
 													tabIndex={isReviewOpened ? 0 : -1}
+													aria-invalid={fieldState.error ? true : false}
 												/>
 											)}
 										/>
@@ -296,9 +301,11 @@ const Product = motion(
 										className={styles.form_description}
 										error={errors.description}
 										tabIndex={isReviewOpened ? 0 : -1}
+										aria-label='Текст отзыва'
+										aria-invalid={errors.description ? true : false}
 									/>
 									<div className={styles.form_submit}>
-										<Button type='submit' appearance='primary' tabIndex={isReviewOpened ? 0 : -1}>
+										<Button type='submit' appearance='primary' tabIndex={isReviewOpened ? 0 : -1} onClick={() => clearErrors()}>
 											Отправить
 										</Button>
 										<span className='tw-ml-[15px]'>
