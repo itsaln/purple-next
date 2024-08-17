@@ -1,15 +1,28 @@
 {
   "extends": [
-    "stylelint-config-standard",
-    "stylelint-order-config-standard"
-  ],
-  "plugins": [
-    "stylelint-order"
+    "stylelint-config-standard-scss"
   ],
   "rules": {
-    "indentation": [
-      "tab"
+    "scss/at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "tailwind"
+        ]
+      }
     ],
-    "color-hex-case": "upper"
+    "selector-class-pattern": [
+      "^([a-z][a-z0-9]*)(_[a-z0-9]+)*$",
+      {
+        "message": "Expected class selector to be snake_case"
+      }
+    ],
+    "declaration-empty-line-before": "never",
+    "declaration-block-no-redundant-longhand-properties": null,
+    "media-feature-range-notation": null,
+    "rule-empty-line-before": null,
+    "color-function-notation": null,
+    "alpha-value-notation": null,
+    "block-no-empty": null
   }
 }
