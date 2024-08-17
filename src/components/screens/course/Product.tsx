@@ -71,7 +71,7 @@ const Product = motion(
 			const onSubmit: SubmitHandler<IReviewForm> = async (formData) => {
 				try {
 					const { data } = await axios.post<IReviewSentResponse>(
-						API.review.createDemo + '/asd',
+						API.review.createDemo,
 						{
 							...formData,
 							productId: product._id
@@ -131,7 +131,8 @@ const Product = motion(
 							{priceRu(product.credit)}/<span className={styles.month}>мес</span>
 						</div>
 
-						<span className='tw-visually-hidden'>{'Рейтинг' + Math.ceil(product.reviewAvg ?? product.initialRating)}</span>
+						<span
+							className='tw-visually-hidden'>{'Рейтинг' + Math.ceil(product.reviewAvg ?? product.initialRating)}</span>
 						<Rating
 							className={styles.rating}
 							rating={product.reviewAvg ?? product.initialRating}
@@ -305,7 +306,12 @@ const Product = motion(
 										aria-invalid={errors.description ? true : false}
 									/>
 									<div className={styles.form_submit}>
-										<Button type='submit' appearance='primary' tabIndex={isReviewOpened ? 0 : -1} onClick={() => clearErrors()}>
+										<Button
+											type='submit'
+											appearance='primary'
+											tabIndex={isReviewOpened ? 0 : -1}
+											onClick={() => clearErrors()}
+										>
 											Отправить
 										</Button>
 										<span className='tw-ml-[15px]'>
@@ -316,27 +322,37 @@ const Product = motion(
 								</form>
 
 								{isSuccess && (
-									<div className={styles.success}>
+									<div className={styles.success} role='alert'>
 										<div className={styles.success_title}>
 											Ваш отзыв отправлен
 										</div>
 										<div>
 											Спасибо, ваш отзыв будет опубликован после проверки.
 										</div>
-										<CloseIcon
-											className={styles.close}
+
+										<button
+											type='button'
+											className={styles.close_btn}
 											onClick={() => setIsSuccess(false)}
-										/>
+											aria-label='Закрыть оповищение'
+										>
+											<CloseIcon />
+										</button>
 									</div>
 								)}
 
 								{error && (
-									<div className={styles.error}>
+									<div className={styles.error} role='alert'>
 										Что-то пошло не так, попробуйте обновить страницу
-										<CloseIcon
-											className={styles.close}
+
+										<button
+											type='button'
+											className={styles.close_btn}
 											onClick={() => setError('')}
-										/>
+											aria-label='Закрыть оповищение'
+										>
+											<CloseIcon />
+										</button>
 									</div>
 								)}
 							</>

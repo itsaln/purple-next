@@ -200,8 +200,8 @@
     .success, .error {
       @apply tw-relative tw-rounded-[5px] tw-p-[20px] tw-mt-[20px];
 
-      .close {
-        @apply tw-absolute tw-top-[20px] tw-right-[20px] tw-cursor-pointer;
+      .close_btn {
+        @apply tw-absolute tw-bg-transparent tw-top-[20px] tw-right-[20px];
       }
     }
 
@@ -212,13 +212,17 @@
         @apply tw-font-bold;
       }
 
-      .close {}
+      .close_btn {
+        path {
+          @apply tw-stroke-green;
+        }
+      }
     }
 
     .error {
       @apply tw-bg-red-light;
 
-      .close {
+      .close_btn {
         path {
           @apply tw-stroke-red;
         }
