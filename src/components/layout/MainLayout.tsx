@@ -1,6 +1,13 @@
 'use client'
 
-import { FC, HTMLAttributes, PropsWithChildren, useState, KeyboardEvent, useRef } from 'react'
+import {
+	FC,
+	HTMLAttributes,
+	PropsWithChildren,
+	useState,
+	KeyboardEvent,
+	useRef
+} from 'react'
 import cn from 'clsx'
 
 import { IMenuItem } from '@/shared/interfaces/menu.interface'
@@ -48,24 +55,26 @@ export const MainLayout: FC<PropsWithChildren<IMainLayout>> = ({
 				})}
 				onFocus={() => setIsSkipLinkDisplayed(true)}
 				onKeyDown={skipContentAction}
-			>Сразу к содержанию</a>
+			>
+				Сразу к содержанию
+			</a>
 
 			<Header
 				className={styles.header}
 				menu={menu}
 				firstCategory={firstCategory}
 			/>
+
 			<Sidebar
 				className={styles.sidebar}
 				menu={menu}
 				firstCategory={firstCategory}
 			/>
-			<main
-				ref={mainRef}
-				tabIndex={0}
-				className={styles.content}
-				role='main'
-			>{children}</main>
+
+			<main ref={mainRef} tabIndex={0} className={styles.content} role='main'>
+				{children}
+			</main>
+
 			<Footer className={styles.footer} />
 
 			<Up />

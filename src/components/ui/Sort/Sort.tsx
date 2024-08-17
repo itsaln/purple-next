@@ -25,7 +25,9 @@ export const Sort: FC<ISortProps> = ({
 }) => {
 	return (
 		<div className={cn(styles.sort, className)} {...props}>
-			<div id='sort' className='tw-hidden'>Сортировка</div>
+			<div id='sort' className='tw-hidden'>
+				Сортировка
+			</div>
 			<button
 				id='rating'
 				type='button'

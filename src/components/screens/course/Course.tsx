@@ -57,7 +57,11 @@ const Course: FC<ICourseProps> = ({
 				<div className={styles.title}>
 					<HTag tag='h1'>{page.title}</HTag>
 					{products && (
-						<Tag color='grey' size='m' aria-label={products.length + 'элементов'}>
+						<Tag
+							color='grey'
+							size='m'
+							aria-label={products.length + 'элементов'}
+						>
 							{products.length}
 						</Tag>
 					)}

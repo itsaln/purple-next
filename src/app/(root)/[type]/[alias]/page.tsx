@@ -13,8 +13,12 @@ interface ICoursePage {
 	params: { alias: string; type: string }
 }
 
-export async function generateMetadata({ params }: ICoursePage): Promise<Metadata> {
+export async function generateMetadata({
+	params
+}: ICoursePage): Promise<Metadata> {
 	const page = await getPage(params.alias)
+
+	if (!page) notFound()
 
 	return {
 		title: page.title,
@@ -40,12 +44,6 @@ export async function generateStaticParams() {
 	}
 
 	return paths
-
-	// return menu.flatMap((item) =>
-	// 	item.pages.map((page) => ({
-	// 		alias: page.alias
-	// 	}))
-	// )
 }
 
 export default async function CoursePage({ params }: ICoursePage) {

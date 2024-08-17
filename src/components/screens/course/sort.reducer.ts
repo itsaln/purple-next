@@ -3,9 +3,9 @@ import { SortEnum } from '@/components/ui'
 import { IProductModel } from '@/shared/interfaces/product.interface'
 
 export type SortActions =
-	{ type: SortEnum.Price }
+	| { type: SortEnum.Price }
 	| { type: SortEnum.Rating }
-	| { type: 'reset', initialState: IProductModel[] }
+	| { type: 'reset'; initialState: IProductModel[] }
 
 export interface ISortReducerState {
 	sort: SortEnum

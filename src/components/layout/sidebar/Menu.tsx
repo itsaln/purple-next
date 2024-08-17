@@ -29,15 +29,19 @@ export const Menu: FC<IMenuProps> = ({
 	const pathname = usePathname()
 	const shouldReduceMotion = useReducedMotion()
 
-	const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>(undefined)
+	const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>(
+		undefined
+	)
 
 	const variants = {
 		visible: {
 			// marginBottom: 20,
-			transition: shouldReduceMotion ? {} : {
-				when: 'beforeChildren',
-				staggerChildren: 0.1
-			}
+			transition: shouldReduceMotion
+				? {}
+				: {
+						when: 'beforeChildren',
+						staggerChildren: 0.1
+					}
 		},
 		hidden: {
 			// marginBottom: 0
@@ -70,7 +74,10 @@ export const Menu: FC<IMenuProps> = ({
 		)
 	}
 
-	const openSecondLevelKey = (key: KeyboardEvent<HTMLDivElement>, secondaryCategory: string) => {
+	const openSecondLevelKey = (
+		key: KeyboardEvent<HTMLButtonElement>,
+		secondaryCategory: string
+	) => {
 		if (key.code === 'Space' || key.code === 'Enter') {
 			key.preventDefault()
 			openSecondLevel(secondaryCategory)
@@ -111,7 +118,9 @@ export const Menu: FC<IMenuProps> = ({
 						<li key={`${m._id.secondCategory}_${i}`}>
 							<button
 								type='button'
-								onKeyDown={(key: KeyboardEvent<HTMLDivElement>) => openSecondLevelKey(key, m._id.secondCategory)}
+								onKeyDown={(key: KeyboardEvent<HTMLButtonElement>) =>
+									openSecondLevelKey(key, m._id.secondCategory)
+								}
 								className={styles.second_level}
 								onClick={() => openSecondLevel(m._id.secondCategory)}
 								aria-expanded={m.isOpened}
@@ -134,7 +143,11 @@ export const Menu: FC<IMenuProps> = ({
 		)
 	}
 
-	const buildThirdLevel = (pages: IPageItem[], route: string, isOpened: boolean) => {
+	const buildThirdLevel = (
+		pages: IPageItem[],
+		route: string,
+		isOpened: boolean
+	) => {
 		return pages.map((p, i) => (
 			<motion.li key={`${p._id}_${i}`} variants={variantsChildren}>
 				<Link
@@ -153,7 +166,11 @@ export const Menu: FC<IMenuProps> = ({
 
 	return (
 		<nav className={cn(styles.menu, className)} {...props} role='navigation'>
-			{announce && <span role='log' className='tw-visually-hidden'>{announce === 'opened' ? 'Развёрнуто' : 'Свёрнуто'}</span>}
+			{announce && (
+				<span role='log' className='tw-visually-hidden'>
+					{announce === 'opened' ? 'Развёрнуто' : 'Свёрнуто'}
+				</span>
+			)}
 			{buildFirstLevel()}
 		</nav>
 	)

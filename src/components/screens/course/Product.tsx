@@ -117,7 +117,10 @@ const Product = motion(
 						<div className={styles.title}>{product.title}</div>
 
 						<div className={styles.price}>
-							<span><span className='tw-visually-hidden'>Цена</span>{priceRu(product.price)}</span>
+							<span>
+								<span className='tw-visually-hidden'>Цена</span>
+								{priceRu(product.price)}
+							</span>
 							{product.oldPrice && (
 								<Tag color='green' className='tw-ml-[5px]'>
 									<span className='tw-visually-hidden'>Скидка</span>
@@ -128,11 +131,14 @@ const Product = motion(
 
 						<div className={styles.credit}>
 							<span className='tw-visually-hidden'>Кредит</span>
-							{priceRu(product.credit)}/<span className={styles.month}>мес</span>
+							{priceRu(product.credit)}/
+							<span className={styles.month}>мес</span>
 						</div>
 
-						<span
-							className='tw-visually-hidden'>{'Рейтинг' + Math.ceil(product.reviewAvg ?? product.initialRating)}</span>
+						<span className='tw-visually-hidden'>
+							{'Рейтинг' +
+								Math.ceil(product.reviewAvg ?? product.initialRating)}
+						</span>
 						<Rating
 							className={styles.rating}
 							rating={product.reviewAvg ?? product.initialRating}
@@ -146,8 +152,12 @@ const Product = motion(
 							))}
 						</div>
 
-						<div className={styles.price_title} aria-hidden={true}>цена</div>
-						<div className={styles.credit_title} aria-hidden={true}>кредит</div>
+						<div className={styles.price_title} aria-hidden={true}>
+							цена
+						</div>
+						<div className={styles.credit_title} aria-hidden={true}>
+							кредит
+						</div>
 						<div className={styles.review_title}>
 							<a href='#reviews' onClick={scrollToReview}>
 								{product.reviewCount}{' '}
@@ -252,7 +262,7 @@ const Product = motion(
 										className={styles.form_input}
 										error={errors.name}
 										tabIndex={isReviewOpened ? 0 : -1}
-										aria-invalid={errors.name ? true : false}
+										aria-invalid={!!errors.name}
 									/>
 									<Input
 										{...register('title', {
@@ -265,7 +275,7 @@ const Product = motion(
 										className={styles.form_input}
 										error={errors.title}
 										tabIndex={isReviewOpened ? 0 : -1}
-										aria-invalid={errors.title ? true : false}
+										aria-invalid={!!errors.title}
 									/>
 									<div className={styles.form_rating}>
 										<span>Оценка:</span>
@@ -286,7 +296,7 @@ const Product = motion(
 													setRating={field.onChange}
 													error={fieldState.error}
 													tabIndex={isReviewOpened ? 0 : -1}
-													aria-invalid={fieldState.error ? true : false}
+													aria-invalid={!!fieldState.error}
 												/>
 											)}
 										/>
@@ -303,7 +313,7 @@ const Product = motion(
 										error={errors.description}
 										tabIndex={isReviewOpened ? 0 : -1}
 										aria-label='Текст отзыва'
-										aria-invalid={errors.description ? true : false}
+										aria-invalid={!!errors.description}
 									/>
 									<div className={styles.form_submit}>
 										<Button
@@ -344,7 +354,6 @@ const Product = motion(
 								{error && (
 									<div className={styles.error} role='alert'>
 										Что-то пошло не так, попробуйте обновить страницу
-
 										<button
 											type='button'
 											className={styles.close_btn}

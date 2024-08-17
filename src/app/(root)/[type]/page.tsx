@@ -18,52 +18,54 @@ interface IModulesPage {
 	params: { type: ModulesPagesEnum }
 }
 
-export async function generateMetadata({ params }: IModulesPage): Promise<Metadata> {
+export async function generateMetadata({
+	params
+}: IModulesPage): Promise<Metadata> {
 	switch (params.type) {
 		case 'courses':
-      return {
-      	title: 'Курсы',
+			return {
+				title: 'Курсы',
 				description: 'Курсы - purpleschool.ru',
 				openGraph: {
-      		title: 'Курсы',
+					title: 'Курсы',
 					description: 'Курсы - purpleschool.ru'
 				}
-      }
-    case 'services':
-      return {
-      	title: 'Сервисы',
+			}
+		case 'services':
+			return {
+				title: 'Сервисы',
 				description: 'Сервисы - purpleschool.ru',
 				openGraph: {
 					title: 'Сервисы',
 					description: 'Сервисы - purpleschool.ru'
 				}
-      }
+			}
 		case 'books':
 			return {
 				title: 'Книги',
 				description: 'Книги - purpleschool.ru',
 				openGraph: {
-          title: 'Книги',
-          description: 'Книги - purpleschool.ru'
-        }
+					title: 'Книги',
+					description: 'Книги - purpleschool.ru'
+				}
 			}
 		case 'products':
 			return {
 				title: 'Продукты',
 				description: 'Продукты - purpleschool.ru',
 				openGraph: {
-          title: 'Продукты',
-          description: 'Продукты - purpleschool.ru'
-        }
+					title: 'Продукты',
+					description: 'Продукты - purpleschool.ru'
+				}
 			}
-    default:
-      return {
+		default:
+			return {
 				title: 'Modules page',
 				description: 'Modules page description',
 				openGraph: {
-          title: 'Modules page',
-          description: 'Modules page description'
-        }
+					title: 'Modules page',
+					description: 'Modules page description'
+				}
 			}
 	}
 }

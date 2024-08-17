@@ -54,7 +54,7 @@ const config: Config = {
 	plugins: [
 		// require('@tailwindcss/forms'),
 		// require('@tailwindcss/aspect-ratio'),
-		plugin(({ addComponents, theme, addUtilities }) => {
+		plugin(({ addComponents, addUtilities }) => {
 			addComponents({
 				'.truncate-1': {
 					display: '-webkit-box !important',
@@ -86,8 +86,8 @@ const config: Config = {
 				},
 				'.visually-hidden': {
 					position: 'absolute',
-					width: 0,
-					height: 0,
+					width: '0',
+					height: '0',
 					overflow: 'hidden'
 				}
 			})

@@ -10,7 +10,8 @@ interface IFieldProps {
 	error?: FieldError
 }
 
-type TypeInputPropsField = TextareaHTMLAttributes<HTMLTextAreaElement> & IFieldProps
+type TypeInputPropsField = TextareaHTMLAttributes<HTMLTextAreaElement> &
+	IFieldProps
 
 export interface ITextareaProps extends TypeInputPropsField {}
 
@@ -26,7 +27,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 					{...props}
 				/>
 
-				{error && <span className={styles.error} role='alert'>{error.message}</span>}
+				{error && (
+					<span className={styles.error} role='alert'>
+						{error.message}
+					</span>
+				)}
 			</div>
 		)
 	}

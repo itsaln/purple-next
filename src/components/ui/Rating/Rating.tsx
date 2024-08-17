@@ -30,7 +30,15 @@ interface IRatingProps extends TypeRatingPropsField {
 
 export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 	(
-		{ isEditable = false, rating, setRating, error, className, tabIndex, ...props },
+		{
+			isEditable = false,
+			rating,
+			setRating,
+			error,
+			className,
+			tabIndex,
+			...props
+		},
 		ref
 	) => {
 		const [ratingArray, setRatingArray] = useState<ReactNode[]>(
@@ -64,7 +72,11 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					aria-valuenow={rating}
 					aria-valuemax={5}
 					aria-valuemin={1}
-					aria-label={isEditable ? 'Укажите рейтинг стрелками вверх или вниз': ('рейтинг' + rating)}
+					aria-label={
+						isEditable
+							? 'Укажите рейтинг стрелками вверх или вниз'
+							: 'рейтинг' + rating
+					}
 					aria-invalid={!!error}
 				>
 					<StarIcon />
@@ -94,13 +106,13 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					setRating(1)
 				} else {
 					key.preventDefault()
-					setRating( rating < 5 ? rating + 1 : 5)
+					setRating(rating < 5 ? rating + 1 : 5)
 				}
 				ratingArrayRef.current[rating]?.focus()
-      }
+			}
 			if (key.code === 'ArrowLeft' || key.code === 'ArrowDown') {
 				key.preventDefault()
-				setRating( rating > 1 ? rating - 1 : 1)
+				setRating(rating > 1 ? rating - 1 : 1)
 				ratingArrayRef.current[rating - 2]?.focus()
 			}
 		}
@@ -121,7 +133,11 @@ export const Rating = forwardRef<HTMLDivElement, IRatingProps>(
 					<span key={`${r}_${i}`}>{r}</span>
 				))}
 
-				{error && <span className={styles.error} role='alert'>{error.message}</span>}
+				{error && (
+					<span className={styles.error} role='alert'>
+						{error.message}
+					</span>
+				)}
 			</div>
 		)
 	}

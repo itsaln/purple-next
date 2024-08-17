@@ -27,21 +27,26 @@ export default async function RootLayout({
 
 	return (
 		<html lang='ru'>
-		<body className={notoSans.className}>
+			<body className={notoSans.className}>
+				{/*<Suspense fallback={null}>*/}
+				{/*	<YandexMetrika />*/}
+				{/*</Suspense>*/}
 
-		<NextTopLoader
-			color={Colors.primary}
-			initialPosition={0.1}
-			crawlSpeed={200}
-			height={3}
-			crawl
-			showSpinner
-			easing='ease'
-			speed={200}
-		/>
+				<NextTopLoader
+					color={Colors.primary}
+					initialPosition={0.1}
+					crawlSpeed={200}
+					height={3}
+					crawl
+					showSpinner
+					easing='ease'
+					speed={200}
+				/>
 
-		<MainLayout menu={menu} firstCategory={firstCategory}>{children}</MainLayout>
-		</body>
+				<MainLayout menu={menu} firstCategory={firstCategory}>
+					{children}
+				</MainLayout>
+			</body>
 		</html>
 	)
 }

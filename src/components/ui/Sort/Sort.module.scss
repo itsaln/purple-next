@@ -3,7 +3,7 @@
   grid-template-columns: auto auto;
 
   > button {
-    @apply tw-grid tw-gap-[8px] tw-items-center tw-text-[16px] tw-leading-[22px] tw-cursor-pointer;
+    @apply tw-bg-transparent tw-grid tw-gap-[8px] tw-items-center tw-text-[16px] tw-leading-[22px] tw-cursor-pointer;
     grid-template-columns: 20px 1fr;
 
     &.active {
