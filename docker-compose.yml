@@ -1,8 +1,13 @@
-version: '3.8'
+version: '3.9'
 services:
   app:
-    image: purple-next
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+    image: docker.pkg.github.com/itsaln/purple-next/purple-next:develop
     container_name: purple-next
     restart: always
     ports:
       - 3000:3000
+#    volumes:
+#      - /data.env:data/.env
